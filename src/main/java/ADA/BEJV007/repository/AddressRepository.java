@@ -1,9 +1,9 @@
 package org.example.repository;
 
-import org.example.domain.Profile;
+import org.example.domain.Address;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProfileRepository extends CrudRepository<Profile, Long> {
+public interface AddressRepository extends CrudRepository<Address, Long> {
 }
