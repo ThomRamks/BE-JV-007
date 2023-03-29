@@ -1,10 +1,10 @@
-package org.example.config;
+package ADA.BEJV007.config;
 
-import org.example.dto.ErrorDTO;
-import org.example.exceptions.ProfileNotFoundException;
-import org.example.exceptions.AddressNotFoundException;
-import org.example.exceptions.PetNotFoundException;
-import org.example.exceptions.SameCpfException;
+import ADA.BEJV007.dto.ErrorDTO;
+import ADA.BEJV007.exceptions.ProfileNotFoundException;
+import ADA.BEJV007.exceptions.AddressNotFoundException;
+import ADA.BEJV007.exceptions.PetNotFoundException;
+import ADA.BEJV007.exceptions.SameCpfException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

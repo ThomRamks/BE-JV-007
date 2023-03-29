@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package ADA.BEJV007.exceptions;
 
 public class AddressNotFoundException extends RuntimeException{
     public AddressNotFoundException(){

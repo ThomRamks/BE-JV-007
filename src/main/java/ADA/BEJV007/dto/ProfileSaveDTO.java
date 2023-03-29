@@ -1,10 +1,10 @@
-package org.example.dto;
+package ADA.BEJV007.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.domain.Address;
+import ADA.BEJV007.domain.Address;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Setter

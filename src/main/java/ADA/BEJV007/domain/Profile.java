@@ -1,10 +1,9 @@
-package org.example.domain;
+package ADA.BEJV007.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter

@@ -1,4 +1,4 @@
-package org.example.dto;
+package ADA.BEJV007.dto;
 
 import lombok.Builder;
 import lombok.Getter;

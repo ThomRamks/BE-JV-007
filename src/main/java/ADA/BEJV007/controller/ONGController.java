@@ -1,8 +1,8 @@
-package org.example.controller;
+package ADA.BEJV007.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.Pet;
-import org.example.service.ONGService;
+import ADA.BEJV007.domain.Pet;
+import ADA.BEJV007.service.ONGService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

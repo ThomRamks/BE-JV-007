@@ -1,16 +1,16 @@
-package org.example.service;
+package ADA.BEJV007.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.Address;
-import org.example.exceptions.AddressNotFoundException;
-import org.example.repository.AddressRepository;
+import ADA.BEJV007.domain.Address;
+import ADA.BEJV007.exceptions.AddressNotFoundException;
+import ADA.BEJV007.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AddressServiceImpl implements org.example.service.AddressService {
+public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository repository;
 

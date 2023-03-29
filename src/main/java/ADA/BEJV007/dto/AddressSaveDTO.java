@@ -1,4 +1,4 @@
-package org.example.dto;
+package ADA.BEJV007.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

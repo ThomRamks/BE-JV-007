@@ -1,6 +1,6 @@
-package org.example.service;
+package ADA.BEJV007.service;
 
-import org.example.domain.Pet;
+import ADA.BEJV007.domain.Pet;
 
 import java.util.List;
 

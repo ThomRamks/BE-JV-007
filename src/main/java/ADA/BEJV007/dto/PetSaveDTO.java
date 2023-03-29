@@ -1,10 +1,10 @@
-package org.example.dto;
+package ADA.BEJV007.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.domain.StatusPet;
-import org.example.domain.TiposPet;
+import ADA.BEJV007.domain.StatusPet;
+import ADA.BEJV007.domain.TiposPet;
 
 import java.time.LocalDate;
 

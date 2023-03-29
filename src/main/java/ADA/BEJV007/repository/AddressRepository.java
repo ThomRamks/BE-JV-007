@@ -1,6 +1,6 @@
-package org.example.repository;
+package ADA.BEJV007.repository;
 
-import org.example.domain.Address;
+import ADA.BEJV007.domain.Address;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

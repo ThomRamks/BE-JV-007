@@ -1,10 +1,10 @@
-package org.example.controller;
+package ADA.BEJV007.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.domain.Address;
-import org.example.dto.AddressSaveDTO;
-import org.example.service.AddressService;
+import ADA.BEJV007.domain.Address;
+import ADA.BEJV007.dto.AddressSaveDTO;
+import ADA.BEJV007.service.AddressService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

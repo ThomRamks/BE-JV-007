@@ -1,9 +1,9 @@
-package org.example.service;
+package ADA.BEJV007.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.Pet;
-import org.example.exceptions.PetNotFoundException;
-import org.example.repository.PetRepository;
+import ADA.BEJV007.domain.Pet;
+import ADA.BEJV007.exceptions.PetNotFoundException;
+import ADA.BEJV007.repository.PetRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

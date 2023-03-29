@@ -1,9 +1,6 @@
-package org.example.domain;
+package ADA.BEJV007.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -15,6 +12,9 @@ import lombok.*;
 @Entity
 @Table
 public class ONG {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private static final ONG ong = new ONG();
     @OneToOne
     @JoinColumn(name = "ID_PET")

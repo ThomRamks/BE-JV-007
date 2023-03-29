@@ -1,10 +1,10 @@
-package org.example.controller;
+package ADA.BEJV007.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.domain.Profile;
-import org.example.dto.ProfileSaveDTO;
-import org.example.service.ProfileService;
+import ADA.BEJV007.domain.Profile;
+import ADA.BEJV007.dto.ProfileSaveDTO;
+import ADA.BEJV007.service.ProfileService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

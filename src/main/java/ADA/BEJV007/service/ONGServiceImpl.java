@@ -1,8 +1,8 @@
-package org.example.service;
+package ADA.BEJV007.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.Pet;
-import org.example.repository.ONGRepository;
+import ADA.BEJV007.domain.Pet;
+import ADA.BEJV007.repository.ONGRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

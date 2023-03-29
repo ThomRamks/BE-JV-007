@@ -1,18 +1,12 @@
-package org.example.controller;
+package ADA.BEJV007.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.ONG;
-import org.example.domain.Pet;
-import org.example.dto.PetSaveDTO;
-import org.example.repository.ONGRepository;
-import org.example.service.PetService;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import ADA.BEJV007.domain.Pet;
+import ADA.BEJV007.dto.PetSaveDTO;
+import ADA.BEJV007.service.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("pets")

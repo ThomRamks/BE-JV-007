@@ -1,6 +1,6 @@
-package org.example.service;
+package ADA.BEJV007.service;
 
-import org.example.domain.Address;
+import ADA.BEJV007.domain.Address;
 import java.util.List;
 
 public interface AddressService {
