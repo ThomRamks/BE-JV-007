@@ -31,3 +31,5 @@ target/
 
 # Java annotation processor (APT)
 .factorypath
+
+.idea
