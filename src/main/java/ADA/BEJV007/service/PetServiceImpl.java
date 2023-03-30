@@ -27,6 +27,10 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet save(Pet pet) {
+        if(repository.existsById(pet.getId())){
+            PetService petServiceImpl = new PetServiceImpl(repository);
+            return petServiceImpl.update(pet.getId(), pet);
+        }
         return repository.save(pet);
     }
 

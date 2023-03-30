@@ -42,9 +42,9 @@
 							<td th:text="${item.status}"/>
 							<td th:text="${item.nascimento}"/>
 							<td th:text="${item.descricao}"/>
-							<td class="text-center align-middle"><a class="btn btn btn-warning btn-sm">Editar</a></td>
+							<td class="text-center align-middle"><a th:href="@{/pets_html/form(id=${item.id})}" class="btn btn btn-warning btn-sm">Editar</a></td>
 							<td class="text-center align-middle" scope="row">
-								<a class="btn btn btn-danger btn-sm" th:href="@{/pet/excluir(id=${item.id})}">Excluir</a>
+								<a class="btn btn btn-danger btn-sm" th:href="@{/pets_html/excluir(id=${item.id})}">Excluir</a>
 							</td>
 						</tr>
 					</tbody>

@@ -20,7 +20,8 @@
 	<section class="container">
 		<form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
 			<input type="hidden" th:field="*{id}">
-			
+			<input type="hidden" class="form-control" name="dataCriacao" th:field="*{nascimento}">
+
 			<div class="row">
 				<div class="col-12">
 					<h5 class="text-center main-text-castanho">Cadastro de Pets</h5>
@@ -79,7 +80,7 @@
 						<div class="input-group-prepend">
 							<label class="input-group-text" for="date">Nascimento:</label>
 						</div>
-						<input class="form-control" type="date" name="Nascimento" th:field="*{nascimento}">
+						<input class="form-control" type="date" name="nascimento" th:field="*{nascimento}">
 					</div>
 					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('nascimento')}" th:text="${erro}"></p>
 				</div>
@@ -89,7 +90,7 @@
 
 			<div class="row justify-content-end">
 				<div class="col-auto mt-3">
-					<button class="btn btn-primary" type="submit" formmethod="post" th:formaction="@{/pets/form}">Salvar</button>
+					<button class="btn btn-primary" type="submit" formmethod="post" th:formaction="@{/pets_html/form}">Salvar</button>
 				</div>
 			</div>
 		</form>
