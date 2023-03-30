@@ -1,9 +1,11 @@
 package ADA.BEJV007.service;
 
+import ADA.BEJV007.dto.PetDTO;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.exceptions.PetNotFoundException;
 import ADA.BEJV007.repository.PetRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,10 @@ import java.util.List;
 public class PetServiceImpl implements PetService {
 
     private final PetRepository repository;
+
+    public List<Pet> listar() {
+        return repository.findAll(Sort.by(Sort.Direction.ASC,"nome","status"));
+    }
 
     @Override
     public List<Pet> list() {

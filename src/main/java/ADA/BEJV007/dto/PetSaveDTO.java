@@ -1,10 +1,11 @@
 package ADA.BEJV007.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import ADA.BEJV007.domain.StatusPet;
-import ADA.BEJV007.domain.TiposPet;
+import ADA.BEJV007.domain.enums.StatusPet;
+import ADA.BEJV007.domain.enums.TiposPet;
 
 import java.time.LocalDate;
 
@@ -13,11 +14,11 @@ import java.time.LocalDate;
 public class PetSaveDTO {
     @NotBlank(message = "É preciso inserir um nome")
     private String nome;
-    @NotBlank(message = "É preciso inserir um tipo de animal")
+    @NotNull(message = "É preciso inserir um tipo de animal")
     private TiposPet tipo;
-    @NotBlank(message = "É preciso inserir um status ao animal")
+    @NotNull(message = "É preciso inserir um status ao animal")
     private StatusPet status;
-    @NotBlank(message = "É preciso inserir uma data de resgate ou nascimento")
+    @NotNull(message = "É preciso inserir uma data de resgate ou nascimento")
     private LocalDate nascimento;
     @NotBlank(message = "Insira uma descrição do animal (cor, pelagem, raça...)")
     private String descricao;
