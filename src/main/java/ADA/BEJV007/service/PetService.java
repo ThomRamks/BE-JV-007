@@ -10,5 +10,4 @@ public interface PetService {
     Pet findById(Long id);
     Pet update (Long id, Pet pet);
     void delete (Long id);
-
 }

@@ -1,5 +1,6 @@
 package ADA.BEJV007.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.dto.PetSaveDTO;
@@ -7,9 +8,12 @@ import ADA.BEJV007.service.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RequestMapping("pets")
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PetController {
     private final PetService petService;
 
@@ -18,9 +22,14 @@ public class PetController {
         return petService.findById(id);
     }
 
+    @GetMapping()
+    public List<Pet> listar(){
+        return petService.list();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Pet save(@RequestBody PetSaveDTO dto){
+    public Pet save(@Valid @RequestBody PetSaveDTO dto){
         Pet pet = Pet.builder()
                 .nome(dto.getNome())
                 .tipo(dto.getTipo())

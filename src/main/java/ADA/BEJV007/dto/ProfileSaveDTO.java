@@ -20,6 +20,6 @@ public class ProfileSaveDTO {
     private Integer telefone;
     @NotBlank(message = "É preciso inserir um endereço de e-mail")
     private String email;
-    @NotBlank(message = "É preciso inserir um endereço")
+    //@NotBlank(message = "É preciso inserir um endereço")
     private Address endereco;
 }
