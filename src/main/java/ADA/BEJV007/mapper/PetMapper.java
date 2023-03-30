@@ -20,18 +20,4 @@ public class PetMapper {
     public void pet(PetSaveDTO entradaDto, Pet pet){
         mapper.map(entradaDto, pet);
     }
-
-//    public SaidaFilmeDto saidaFilmeDto(Filme filme) {
-//        return mapper.map(filme, SaidaFilmeDto.class);
-//    }
-//
-//    public void filme(EntradaFilmeDto entradaDto, Filme filme) {
-//        mapper.map(entradaDto, filme);
-//    }
-//
-//    public Page<SaidaFilmeDto> listSaidaFilmeDto(Page<Filme> list) {
-//        Page<SaidaFilmeDto> map = list.map(f -> saidaFilmeDto(f));
-//
-//        return map;
-//    }
 }

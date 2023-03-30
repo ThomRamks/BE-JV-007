@@ -9,6 +9,7 @@ import java.util.List;
 public interface PetService {
     List<Pet> list();
     Pet save(PetSaveDTO pet);
+    Pet savehtml(Pet pet);
     Pet findById(Long id);
     Pet update (Long id, Pet pet);
     void delete (Long id);

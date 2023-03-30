@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
 import ADA.BEJV007.dto.ProfileSaveDTO;
 import ADA.BEJV007.service.ProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,8 @@ import java.util.List;
 @RestController
 public class ProfileController {
 
-    private final ProfileService profileService;
+    @Autowired
+    private ProfileService profileService;
 
     @GetMapping
     public List<Profile> list(){

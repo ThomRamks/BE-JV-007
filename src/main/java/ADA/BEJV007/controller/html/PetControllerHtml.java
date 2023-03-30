@@ -53,16 +53,14 @@ public class PetControllerHtml {
         return form(id != null ? petService.findById(id) : new Pet(), null, null);
     }
 
-//    @PostMapping("form")
-//    public ModelAndView save(@Valid @ModelAttribute("model") Pet pet, BindingResult result){
-//        if (result.hasErrors()) {
-//            return form(pet, null, "Erro ao salvar Pet"); // devolve os dados preenchidos
-//        }
-//
-//         petService.save(pet);
-//
-//        return form(new Pet(), "Pet salvo com sucesso", null);
-//    }
+    @PostMapping("form")
+    public ModelAndView savehtml(@Valid @ModelAttribute("model") Pet pet, BindingResult result){
+        if (result.hasErrors()) {
+            return form(pet, null, "Erro ao salvar Pet");
+        }
+        petService.savehtml(pet);
+        return form(new Pet(), "Pet salvo com sucesso", null);
+    }
 
     @GetMapping("excluir")
     public ModelAndView excluir(@RequestParam(value = "id") Integer id) {

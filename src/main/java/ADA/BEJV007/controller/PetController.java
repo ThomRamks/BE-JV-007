@@ -2,6 +2,7 @@ package ADA.BEJV007.controller;
 
 import ADA.BEJV007.dto.PetDTO;
 import ADA.BEJV007.mapper.PetMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.dto.PetSaveDTO;
@@ -15,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("pets")
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PetController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class PetController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Pet save(@RequestBody PetSaveDTO dto){
+    public Pet save(@Valid @RequestBody PetSaveDTO dto){
         return petService.save(dto);
     }
 
