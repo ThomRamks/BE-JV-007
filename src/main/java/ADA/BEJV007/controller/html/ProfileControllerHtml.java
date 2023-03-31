@@ -49,7 +49,7 @@ public class ProfileControllerHtml {
     @PostMapping("form")
     public ModelAndView savehtml(@Valid @ModelAttribute("model") Profile profile, BindingResult result){
         if (result.hasErrors()) {
-            return form(profile, null, "Erro ao salvar Usuário"); // devolve os dados preenchidos
+            return form(profile, null, "Erro ao salvar Usuário");
         }
         profileService.saveHtml(profile);
         return form(new Profile(), "Usuario salvo com sucesso", null);

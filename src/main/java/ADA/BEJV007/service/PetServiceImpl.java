@@ -1,6 +1,7 @@
 package ADA.BEJV007.service;
 
 import ADA.BEJV007.dto.PetSaveDTO;
+import ADA.BEJV007.exceptions.NotFoundException;
 import ADA.BEJV007.mapper.PetMapper;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Pet;
@@ -38,7 +39,7 @@ public class PetServiceImpl implements GeneralService <Pet> {
 
     @Override
     public Pet findById(Long id) {
-        return repository.findById(id).orElseThrow(PetNotFoundException::new);
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Pet"));
     }
 
     @Override
@@ -47,13 +48,13 @@ public class PetServiceImpl implements GeneralService <Pet> {
             pet.setId(id);
             return repository.save(pet);
         }
-        throw new PetNotFoundException();
+        throw new NotFoundException("Pet");
     }
 
     @Override
     public void delete(Long id) {
         if(!repository.existsById(id)){
-            throw new PetNotFoundException();
+            throw new NotFoundException("Pet");
         }
         repository.deleteById(id);
     }
