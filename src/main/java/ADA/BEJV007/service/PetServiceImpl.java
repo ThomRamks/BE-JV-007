@@ -1,6 +1,5 @@
 package ADA.BEJV007.service;
 
-import ADA.BEJV007.dto.PetDTO;
 import ADA.BEJV007.dto.PetSaveDTO;
 import ADA.BEJV007.mapper.PetMapper;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +7,6 @@ import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.exceptions.PetNotFoundException;
 import ADA.BEJV007.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

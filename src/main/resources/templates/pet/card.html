@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" charset="utf-8">
+<title>Adote Makers</title>
+
+<link href="/css/main.css" rel="stylesheet" />
+
+<!-- WEBJARS -->
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+
+<body class="main-bg-amarelo" >
+	<!-- Barra de Menu -->
+	<section th:insert="navbar :: navbar"></section>
+	
+	<section class="container d-flex flex-row" th:each="item : ${lista}">
+		<div class="card-deck">
+		<div class="card" style="width:100%" >
+			<box><img th:src="${item.linkImagem}" class="img-fluid card-img-top" alt="Imagem responsiva"></box>
+
+			<div class="card-body">
+				<h5 class="card-title" th:text="${item.nome}"></h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+			</ul>
+			<div class="card-body">
+				<a href="#" class="card-link">Card link</a>
+				<a href="#" class="card-link">Another link</a>
+			</div>
+		</div>
+		</div>
+	<section th:insert="mensagem :: mensagem"></section>
+	</section>
+	
+	<script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
+		$("#mensagem").modal("show");	
+	</script>	
+
+</body>

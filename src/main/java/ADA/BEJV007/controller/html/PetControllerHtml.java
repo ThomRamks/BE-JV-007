@@ -4,7 +4,6 @@ package ADA.BEJV007.controller.html;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.domain.enums.TiposPet;
-import ADA.BEJV007.dto.PetSaveDTO;
 import ADA.BEJV007.mapper.PetMapper;
 import ADA.BEJV007.service.PetService;
 import jakarta.validation.Valid;
@@ -37,7 +36,7 @@ public class PetControllerHtml {
     }
 
     private ModelAndView form(List<Pet> lista, String sucesso, String erro) {
-        return new ModelAndView("pet/table")
+        return new ModelAndView("pet/card")
                 .addObject("lista", lista)
                 .addObject("sucesso", sucesso)
                 .addObject("erro", erro);

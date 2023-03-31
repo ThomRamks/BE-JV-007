@@ -30,4 +30,5 @@ public class Pet {
     private String descricao;
     @Enumerated(EnumType.STRING)
     private StatusPet status;
+    private String linkImagem;
 }
