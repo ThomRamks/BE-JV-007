@@ -3,7 +3,7 @@
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" charset="utf-8">
-<title>Pets</title>
+<title>Adote Makers</title>
 
 <link href="/css/main.css" rel="stylesheet" />
 
@@ -20,7 +20,7 @@
 	<section class="container">
 		<form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
 			<input type="hidden" th:field="*{id}">
-			<input type="hidden" class="form-control" name="dataCriacao" th:field="*{nascimento}">
+			<input type="hidden" class="form-control" name="nascimento" th:field="*{nascimento}">
 
 			<div class="row">
 				<div class="col-12">
@@ -73,6 +73,16 @@
 						<input class="form-control" type="text" id="descricao" name="dono" th:field="*{descricao}" >
 					</div>
 					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('descricao')}" th:text="${erro}"></p>
+				</div>
+
+				<div class="col-6 mt-1">
+					<div class="input-group input-group">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="linkImagem">Imagem:</label>
+						</div>
+						<input class="form-control" type="text" id="linkImagem" name="linkImagem" th:field="*{linkImagem}" >
+					</div>
+					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('linkImagem')}" th:text="${erro}"></p>
 				</div>
 
 				<div class="col-6 mt-1">

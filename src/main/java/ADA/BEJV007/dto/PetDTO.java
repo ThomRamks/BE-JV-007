@@ -8,7 +8,7 @@ import jakarta.persistence.Enumerated;
 import java.time.LocalDate;
 
 public class PetDTO {
-
+    private Long id;
     private String nome;
     @Enumerated(EnumType.STRING)
     private TiposPet tipo;
@@ -16,4 +16,5 @@ public class PetDTO {
     private String descricao;
     @Enumerated(EnumType.STRING)
     private StatusPet status;
+    private String linkImagem;
 }

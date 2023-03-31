@@ -4,10 +4,11 @@ package ADA.BEJV007.controller.html;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.domain.enums.TiposPet;
-import ADA.BEJV007.dto.PetSaveDTO;
+import ADA.BEJV007.mapper.PetMapper;
 import ADA.BEJV007.service.PetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +19,12 @@ import java.util.List;
 @RequestMapping("pets_html")
 @RestController
 public class PetControllerHtml {
-    private final PetService petService;
+
+    @Autowired
+    private PetService petService;
+
+    @Autowired
+    private PetMapper mapper;
 
     private ModelAndView form(Pet model, String sucesso, String erro) {
         return new ModelAndView("pet/form")
@@ -30,7 +36,7 @@ public class PetControllerHtml {
     }
 
     private ModelAndView form(List<Pet> lista, String sucesso, String erro) {
-        return new ModelAndView("pet/table")
+        return new ModelAndView("pet/card")
                 .addObject("lista", lista)
                 .addObject("sucesso", sucesso)
                 .addObject("erro", erro);
@@ -47,13 +53,11 @@ public class PetControllerHtml {
     }
 
     @PostMapping("form")
-    public ModelAndView save(@Valid @ModelAttribute("model") Pet pet, BindingResult result){
+    public ModelAndView savehtml(@Valid @ModelAttribute("model") Pet pet, BindingResult result){
         if (result.hasErrors()) {
-            return form(pet, null, "Erro ao salvar Pet"); // devolve os dados preenchidos
+            return form(pet, null, "Erro ao salvar Pet");
         }
-
-         petService.save(pet);
-
+        petService.savehtml(pet);
         return form(new Pet(), "Pet salvo com sucesso", null);
     }
 

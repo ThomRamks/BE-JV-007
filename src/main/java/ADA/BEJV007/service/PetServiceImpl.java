@@ -1,11 +1,12 @@
 package ADA.BEJV007.service;
 
-import ADA.BEJV007.dto.PetDTO;
+import ADA.BEJV007.dto.PetSaveDTO;
+import ADA.BEJV007.mapper.PetMapper;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.exceptions.PetNotFoundException;
 import ADA.BEJV007.repository.PetRepository;
-import org.springframework.data.domain.Sort;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PetServiceImpl implements PetService {
 
-    private final PetRepository repository;
+    @Autowired
+    private PetMapper mapper;
 
-    public List<Pet> listar() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC,"nome","status"));
-    }
+    private final PetRepository repository;
 
     @Override
     public List<Pet> list() {
@@ -26,8 +26,19 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet save(Pet pet) {
-        return repository.save(pet);
+    public Pet save(PetSaveDTO dto) {
+        Pet pet = mapper.pet(dto);
+        repository.save(pet);
+
+        return pet;
+    }
+
+    @Override
+    public Pet savehtml(Pet pet) {
+
+        repository.save(pet);
+
+        return pet;
     }
 
     @Override
