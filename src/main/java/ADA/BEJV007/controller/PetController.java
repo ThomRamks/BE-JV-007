@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("pets")
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PetController {
 
     @Autowired
@@ -32,6 +33,11 @@ public class PetController {
     @GetMapping("{id}")
     public Pet getById(@PathVariable Long id){
         return petService.findById(id);
+    }
+
+    @GetMapping()
+    public List<Pet> listar(){
+        return petService.list();
     }
 
     @PostMapping
