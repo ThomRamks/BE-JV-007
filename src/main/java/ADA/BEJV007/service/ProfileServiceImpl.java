@@ -1,19 +1,25 @@
 package ADA.BEJV007.service;
 
+import ADA.BEJV007.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
 import ADA.BEJV007.exceptions.ProfileNotFoundException;
 import ADA.BEJV007.exceptions.SameCpfException;
 import ADA.BEJV007.repository.ProfileRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProfileServiceImpl implements ProfileService {
+public class ProfileServiceImpl implements GeneralService <Profile> {
 
     private final ProfileRepository repository;
+
+    public List<Profile> listar() {
+        return (List<Profile>) repository.findAll(Sort.by(Sort.Direction.ASC, "nome", "sobrenome"));
+    }
 
     @Override
     public List<Profile> list() {
@@ -22,7 +28,15 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile save(Profile profile) {
-        if(list().stream().anyMatch(dono1 -> dono1.getCpf().equals(profile.getCpf()))){
+        if(list().stream().anyMatch(usuario -> usuario.getCpf().equals(profile.getCpf()) && !usuario.getId().equals(profile.getId()))){
+            throw new SameCpfException();
+        }
+        return repository.save(profile);
+    }
+
+    @Override
+    public Profile saveHtml(Profile profile) {
+        if(list().stream().anyMatch(usuario -> usuario.getCpf().equals(profile.getCpf()) && !usuario.getId().equals(profile.getId()))){
             throw new SameCpfException();
         }
         return repository.save(profile);
@@ -30,7 +44,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile findById(Long id) {
-        return repository.findById(id).orElseThrow(ProfileNotFoundException::new);
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Usuário"));
     }
 
     @Override
@@ -39,13 +53,13 @@ public class ProfileServiceImpl implements ProfileService {
             profile.setId(id);
             return repository.save(profile);
         }
-        throw new ProfileNotFoundException();
+        throw new NotFoundException("Usuário");
     }
 
     @Override
     public void delete(Long id) {
         if(!repository.existsById(id)){
-            throw new ProfileNotFoundException();
+            throw new NotFoundException("Usuário");
         }
         repository.deleteById(id);
     }

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" charset="utf-8">
+    <title>Usuarios</title>
+
+    <link href="/css/main.css" rel="stylesheet"/>
+
+    <!-- WEBJARS -->
+    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+</head>
+
+<body class="main-bg-amarelo">
+<!-- Barra de Menu -->
+<section th:insert="navbar :: navbar"></section>
+
+<section class="container">
+    <form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="row">
+            <div class="col-12">
+                <h5 class="text-center main-text-castanho">Cadastro de Usuarios</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mt-3">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nome">Nome:</label>
+                    </div>
+                    <input class="form-control" type="text" id="nome" name="nome" th:field="*{nome}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('nome')}" th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="sobrenome">Sobrenome:</label>
+                    </div>
+                    <input class="form-control" type="text" id="sobrenome" name="sobrenome" th:field="*{sobrenome}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('sobrenome')}" th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="cpf">CPF:</label>
+                    </div>
+                    <input class="form-control" type="text" id="cpf" name="cpf" th:field="*{cpf}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('cpf')}" th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="telefone">Telefone:</label>
+                    </div>
+                    <input class="form-control" type="text" id="telefone" name="telefone" th:field="*{telefone}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('telefone')}" th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="email">E-mail:</label>
+                    </div>
+                    <input class="form-control" type="text" id="email" name="email" th:field="*{email}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('email')}" th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="date">Data de Criacao:</label>
+                    </div>
+                    <input class="form-control" type="date" name="registro" th:field="*{registro}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('registro')}" th:text="${erro}"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mt-3">
+                <h5 class="text-center main-text-castanho">Endereço</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nome">Logradouro:</label>
+                    </div>
+                    <input class="form-control" type="text" id="endereco.logradouro" name="endereco.logradouro"
+                           th:field="*{endereco.logradouro}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('endereco.logradouro')}"
+                   th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nome">Numero:</label>
+                    </div>
+                    <input class="form-control" type="text" id="endereco.numero" name="endereco.numero"
+                           th:field="*{endereco.numero}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('endereco.numero')}"
+                   th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nome">CEP:</label>
+                    </div>
+                    <input class="form-control" type="text" id="endereco.cep" name="endereco.cep"
+                           th:field="*{endereco.cep}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('endereco.cep')}" th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nome">Bairro:</label>
+                    </div>
+                    <input class="form-control" type="text" id="endereco.bairro" name="endereco.bairro"
+                           th:field="*{endereco.bairro}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('endereco.bairro')}"
+                   th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nome">Cidade:</label>
+                    </div>
+                    <input class="form-control" type="text" id="endereco.cidade" name="endereco.cidade"
+                           th:field="*{endereco.cidade}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('endereco.cidade')}"
+                   th:text="${erro}"></p>
+            </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="nome">Estado:</label>
+                    </div>
+                    <input class="form-control" type="text" id="endereco.estado" name="endereco.estado"
+                           th:field="*{endereco.estado}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('endereco.estado')}"
+                   th:text="${erro}"></p>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-end">
+            <div class="col-auto mt-3">
+                <button class="btn btn-primary" type="submit" formmethod="post" th:formaction="@{/profile_html/form}">
+                    Salvar
+                </button>
+            </div>
+        </div>
+    </form>
+    <section th:insert="mensagem :: mensagem"></section>
+</section>
+
+<script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
+		$("#mensagem").modal("show");	
+
+</script>
+
+</body>

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PetServiceImpl implements PetService {
+public class PetServiceImpl implements GeneralService <Pet> {
 
     @Autowired
     private PetMapper mapper;
@@ -26,18 +26,13 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet save(PetSaveDTO dto) {
-        Pet pet = mapper.pet(dto);
-        repository.save(pet);
-
-        return pet;
+    public Pet save(Pet pet) {
+        return repository.save(pet);
     }
 
     @Override
-    public Pet savehtml(Pet pet) {
-
+    public Pet saveHtml(Pet pet) {
         repository.save(pet);
-
         return pet;
     }
 

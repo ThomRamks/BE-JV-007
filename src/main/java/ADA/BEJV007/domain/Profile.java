@@ -19,12 +19,12 @@ public class Profile {
     private Long id;
     private String nome;
     private String sobrenome;
-    @Column(unique = true)
+
     private String cpf;
     private Integer telefone;
     @Column(name = "e_mail")
     private String email;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ID_ENDERECO")
     private Address endereco;
     private LocalDate registro;

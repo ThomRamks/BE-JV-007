@@ -1,5 +1,6 @@
 package ADA.BEJV007.service;
 
+import ADA.BEJV007.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Address;
 import ADA.BEJV007.exceptions.AddressNotFoundException;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AddressServiceImpl implements AddressService {
+public class AddressServiceImpl implements GeneralService <Address> {
 
     private final AddressRepository repository;
 
@@ -25,8 +26,14 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public Address saveHtml(Address address) {
+        repository.save(address);
+        return address;
+    }
+
+    @Override
     public Address findById(Long id) {
-        return repository.findById(id).orElseThrow(AddressNotFoundException::new);
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Endereço"));
     }
 
     @Override
@@ -35,13 +42,13 @@ public class AddressServiceImpl implements AddressService {
             address.setId(id);
             return repository.save(address);
         }
-        throw new AddressNotFoundException();
+        throw new NotFoundException("Endereço");
     }
 
     @Override
     public void delete(Long id) {
         if(!repository.existsById(id)){
-            throw new AddressNotFoundException();
+            throw new NotFoundException("Endereço");
         }
         repository.deleteById(id);
     }

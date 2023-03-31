@@ -5,7 +5,7 @@ import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.domain.enums.TiposPet;
 import ADA.BEJV007.mapper.PetMapper;
-import ADA.BEJV007.service.PetService;
+import ADA.BEJV007.service.GeneralService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.List;
 public class PetControllerHtml {
 
     @Autowired
-    private PetService petService;
+    private GeneralService<Pet> petService;
 
     @Autowired
     private PetMapper mapper;
@@ -57,7 +57,7 @@ public class PetControllerHtml {
         if (result.hasErrors()) {
             return form(pet, null, "Erro ao salvar Pet");
         }
-        petService.savehtml(pet);
+        petService.saveHtml(pet);
         return form(new Pet(), "Pet salvo com sucesso", null);
     }
 

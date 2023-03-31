@@ -1,17 +1,15 @@
 package ADA.BEJV007.controller;
 
+import ADA.BEJV007.mapper.ProfileMapper;
+import ADA.BEJV007.service.GeneralService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
 import ADA.BEJV007.dto.ProfileSaveDTO;
-import ADA.BEJV007.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,7 +18,9 @@ import java.util.List;
 public class ProfileController {
 
     @Autowired
-    private ProfileService profileService;
+    private GeneralService<Profile> profileService;
+    @Autowired
+    private ProfileMapper mapper;
 
     @GetMapping
     public List<Profile> list(){
@@ -35,29 +35,13 @@ public class ProfileController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Profile save(@Valid @RequestBody ProfileSaveDTO dto){
-        ZoneId zoneId = ZoneId.systemDefault();
-        Profile profile = Profile.builder()
-                .nome(dto.getNome())
-                .sobrenome(dto.getSobrenome())
-                .cpf(dto.getCpf())
-                .telefone(dto.getTelefone())
-                .email(dto.getEmail())
-                .endereco(dto.getEndereco())
-                .registro(LocalDate.ofInstant(Instant.now(), zoneId))
-                .build();
+        Profile profile = mapper.profile(dto);
         return profileService.save(profile);
     }
 
     @PutMapping("{id}")
     public Profile update(@PathVariable Long id, @RequestBody ProfileSaveDTO dto){
-        Profile profile = Profile.builder()
-                .nome(dto.getNome())
-                .sobrenome(dto.getSobrenome())
-                .cpf(dto.getCpf())
-                .telefone(dto.getTelefone())
-                .email(dto.getEmail())
-                .endereco(dto.getEndereco())
-                .build();
+        Profile profile = mapper.profile(dto);
         return profileService.update(id, profile);
     }
 

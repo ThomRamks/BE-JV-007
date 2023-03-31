@@ -1,10 +1,12 @@
 package ADA.BEJV007.controller;
 
+import ADA.BEJV007.mapper.AddressMapper;
+import ADA.BEJV007.service.GeneralService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Address;
 import ADA.BEJV007.dto.AddressSaveDTO;
-import ADA.BEJV007.service.AddressService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +16,10 @@ import java.util.List;
 @RequestMapping("enderecos")
 @RestController
 public class AddressController {
-    private final AddressService addressService;
+    @Autowired
+    private GeneralService<Address> addressService;
+    @Autowired
+    private AddressMapper mapper;
 
     @GetMapping
     public List<Address> enderecos(){
@@ -29,27 +34,13 @@ public class AddressController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Address save(@Valid @RequestBody AddressSaveDTO dto){
-        Address address = Address.builder()
-                .logradouro(dto.getLogradouro())
-                .numero(dto.getNumero())
-                .bairro(dto.getBairro())
-                .cep(dto.getCep())
-                .cidade(dto.getCidade())
-                .estado(dto.getEstado())
-                .build();
+        Address address = mapper.address(dto);
         return addressService.save(address);
     }
 
     @PutMapping("{id}")
     public Address update(@PathVariable Long id, @RequestBody AddressSaveDTO dto){
-        Address address = Address.builder()
-                .logradouro(dto.getLogradouro())
-                .numero(dto.getNumero())
-                .bairro(dto.getBairro())
-                .cep(dto.getCep())
-                .cidade(dto.getCidade())
-                .estado(dto.getEstado())
-                .build();
+        Address address = mapper.address(dto);
         return addressService.update(id, address);
     }
 

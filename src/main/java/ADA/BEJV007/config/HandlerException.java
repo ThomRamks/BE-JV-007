@@ -1,10 +1,7 @@
 package ADA.BEJV007.config;
 
 import ADA.BEJV007.dto.ErrorDTO;
-import ADA.BEJV007.exceptions.ProfileNotFoundException;
-import ADA.BEJV007.exceptions.AddressNotFoundException;
-import ADA.BEJV007.exceptions.PetNotFoundException;
-import ADA.BEJV007.exceptions.SameCpfException;
+import ADA.BEJV007.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -32,27 +29,33 @@ public class HandlerException {
         return errors;
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ProfileNotFoundException.class)
-    public ErrorDTO handlerProfileNotFound(ProfileNotFoundException ex) {
-        return ErrorDTO.builder().message(ex.getMessage()).build();
-    }
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ExceptionHandler(ProfileNotFoundException.class)
+//    public ErrorDTO handlerProfileNotFound(ProfileNotFoundException ex) {
+//        return ErrorDTO.builder().message(ex.getMessage()).build();
+//    }
+
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ExceptionHandler(PetNotFoundException.class)
+//    public ErrorDTO handlerPetNotFound(PetNotFoundException ex) {
+//        return ErrorDTO.builder().message(ex.getMessage()).build();
+//    }
+
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ExceptionHandler(AddressNotFoundException.class)
+//    public ErrorDTO handlerAddressNotFound(AddressNotFoundException ex) {
+//        return ErrorDTO.builder().message(ex.getMessage()).build();
+//    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(PetNotFoundException.class)
-    public ErrorDTO handlerPetNotFound(PetNotFoundException ex) {
-        return ErrorDTO.builder().message(ex.getMessage()).build();
-    }
-
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(AddressNotFoundException.class)
-    public ErrorDTO handlerAddressNotFound(AddressNotFoundException ex) {
+    @ExceptionHandler(NotFoundException.class)
+    public ErrorDTO handlerNotFound(NotFoundException ex) {
         return ErrorDTO.builder().message(ex.getMessage()).build();
     }
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(SameCpfException.class)
-    public ErrorDTO handlerSameCpf(SameCpfException ex){
+    public ErrorDTO handlerSameCpf(SameCpfException ex) {
         return ErrorDTO.builder().message(ex.getMessage()).build();
     }
 

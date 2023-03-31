@@ -7,6 +7,8 @@ import lombok.Setter;
 import ADA.BEJV007.domain.Address;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.time.LocalDate;
+
 @Setter
 @Getter
 public class ProfileSaveDTO {
@@ -20,6 +22,8 @@ public class ProfileSaveDTO {
     private Integer telefone;
     @NotBlank(message = "É preciso inserir um endereço de e-mail")
     private String email;
-    //@NotBlank(message = "É preciso inserir um endereço")
+    @NotBlank(message = "É preciso inserir um endereço")
     private Address endereco;
+    @NotNull
+    private LocalDate registro;
 }
