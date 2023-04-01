@@ -29,24 +29,6 @@ public class HandlerException {
         return errors;
     }
 
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ExceptionHandler(ProfileNotFoundException.class)
-//    public ErrorDTO handlerProfileNotFound(ProfileNotFoundException ex) {
-//        return ErrorDTO.builder().message(ex.getMessage()).build();
-//    }
-
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ExceptionHandler(PetNotFoundException.class)
-//    public ErrorDTO handlerPetNotFound(PetNotFoundException ex) {
-//        return ErrorDTO.builder().message(ex.getMessage()).build();
-//    }
-
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ExceptionHandler(AddressNotFoundException.class)
-//    public ErrorDTO handlerAddressNotFound(AddressNotFoundException ex) {
-//        return ErrorDTO.builder().message(ex.getMessage()).build();
-//    }
-
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ErrorDTO handlerNotFound(NotFoundException ex) {

@@ -3,7 +3,6 @@ package ADA.BEJV007.service;
 import ADA.BEJV007.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
-import ADA.BEJV007.exceptions.ProfileNotFoundException;
 import ADA.BEJV007.exceptions.SameCpfException;
 import ADA.BEJV007.repository.ProfileRepository;
 import org.springframework.data.domain.Sort;
