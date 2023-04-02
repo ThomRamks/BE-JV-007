@@ -31,4 +31,8 @@ public class Pet {
     @Enumerated(EnumType.STRING)
     private StatusPet status;
     private String linkImagem;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PERFIS_ID", referencedColumnName = "ID")
+    private Profile dono;
 }

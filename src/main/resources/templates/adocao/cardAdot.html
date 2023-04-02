@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" charset="utf-8">
+<title>Adote Makers</title>
+
+<link href="/css/main.css" rel="stylesheet" />
+
+<!-- WEBJARS -->
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+
+<body class="main-bg-amarelo" >
+	<!-- Barra de Menu -->
+	<section th:insert="navbar :: navbar"></section>
+
+	<section class="container d-flex flex-row">
+		<div class="card-container d-flex flex-wrap justify-content-center">
+
+		<div th:each="item : ${lista}">
+			<div class="card mx-3 my-3" style="width: 18rem;">
+				<div class="img-card "><img th:src="${item.linkImagem}" class="card-img-top" alt="Imagem responsiva">
+				</div>
+					<div class="card-body">
+					<h4 class="card-text" th:text="${item.nome}"></h4>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">Tipo: <span th:text="${item.tipo}"></span></li>
+					<li class="list-group-item" >Descrição: <span th:text="${item.descricao}"></span></li>
+					<li class="list-group-item" >Status: <span th:text="${item.status}"></span></li>
+					<li class="list-group-item" >Dono: <span th:text="${item.dono.nome}"></span></li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</section>
+	<section th:insert="mensagem :: mensagem"></section>
+	</section>
+	
+	<script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
+		$("#mensagem").modal("show");	
+	</script>	
+
+</body>

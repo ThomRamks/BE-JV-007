@@ -1,9 +1,11 @@
 package ADA.BEJV007.service;
 
+import ADA.BEJV007.domain.Pet;
+import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
-import ADA.BEJV007.exceptions.ProfileNotFoundException;
 import ADA.BEJV007.exceptions.SameCpfException;
 import ADA.BEJV007.repository.ProfileRepository;
 import org.springframework.data.domain.Sort;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Getter
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements GeneralService <Profile> {
 
@@ -63,5 +66,14 @@ public class ProfileServiceImpl implements GeneralService <Profile> {
             throw new NotFoundException("Usuário");
         }
         repository.deleteById(id);
+    }
+
+    public void adotar(String cpf, Pet pet){
+        if(repository.existsByCpf(cpf)){
+            Profile profile = repository.getByCpf(cpf);
+            profile.getPets().add(pet);
+            pet.setDono(profile);
+            pet.setStatus(StatusPet.ADOTADO);
+        }
     }
 }

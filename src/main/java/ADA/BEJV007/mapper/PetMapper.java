@@ -1,7 +1,6 @@
 package ADA.BEJV007.mapper;
 
 import ADA.BEJV007.domain.Pet;
-import ADA.BEJV007.dto.PetDTO;
 import ADA.BEJV007.dto.PetSaveDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

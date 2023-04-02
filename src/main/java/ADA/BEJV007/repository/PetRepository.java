@@ -1,7 +1,6 @@
 package ADA.BEJV007.repository;
 
 import ADA.BEJV007.domain.Pet;
-import ADA.BEJV007.dto.PetDTO;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
