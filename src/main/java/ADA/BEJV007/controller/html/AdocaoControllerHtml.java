@@ -23,7 +23,7 @@ public class AdocaoControllerHtml {
     @Autowired
     private GeneralService<Pet> petService;
     @Autowired
-    private ProfileServiceImpl profileService;
+    private GeneralService<Profile> profileService;
 
 
     private ModelAndView form(Pet model, String sucesso, String erro) {
@@ -69,7 +69,6 @@ public class AdocaoControllerHtml {
         if (result.hasErrors()) {
             return listarDisponiveis();
         }
-//        profileService.adotar(cpf, pet);
         pet.setDono(profileService.findById(id));
         pet.setStatus(StatusPet.ADOTADO);
         petService.saveHtml(pet);

@@ -22,4 +22,6 @@ public class PetSaveDTO {
     private LocalDate nascimento;
     @NotBlank(message = "Insira uma descrição do animal (cor, pelagem, raça...)")
     private String descricao;
+    @NotBlank(message = "É preciso inserir uma imagem")
+    private String linkImagem;
 }

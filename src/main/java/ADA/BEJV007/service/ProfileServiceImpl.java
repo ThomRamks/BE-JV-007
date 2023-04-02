@@ -67,13 +67,4 @@ public class ProfileServiceImpl implements GeneralService <Profile> {
         }
         repository.deleteById(id);
     }
-
-    public void adotar(String cpf, Pet pet){
-        if(repository.existsByCpf(cpf)){
-            Profile profile = repository.getByCpf(cpf);
-            profile.getPets().add(pet);
-            pet.setDono(profile);
-            pet.setStatus(StatusPet.ADOTADO);
-        }
-    }
 }

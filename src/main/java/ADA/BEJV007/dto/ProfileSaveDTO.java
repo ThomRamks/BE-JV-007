@@ -1,5 +1,7 @@
 package ADA.BEJV007.dto;
 
+import ADA.BEJV007.domain.Profile;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -23,8 +25,9 @@ public class ProfileSaveDTO {
     private Integer telefone;
     @NotBlank(message = "É preciso inserir um endereço de e-mail")
     private String email;
-    @NotBlank(message = "É preciso inserir um endereço")
     private Address endereco;
     @NotNull
     private LocalDate registro;
+    @Nullable
+    private Profile dono;
 }
