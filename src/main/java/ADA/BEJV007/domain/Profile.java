@@ -38,9 +38,8 @@ public class Profile {
     @JoinColumn(name = "ID_ENDERECO")
     private Address endereco;
     private LocalDate registro;
-    @OneToMany
+    @OneToMany(mappedBy = "dono")
     @JsonIgnoreProperties("dono")
-    @JoinColumn(name = "ID_DONO", referencedColumnName = "ID")
     private List<Pet> pets;
 
 }
