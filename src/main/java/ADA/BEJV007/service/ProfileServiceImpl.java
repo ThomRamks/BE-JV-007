@@ -1,6 +1,7 @@
 package ADA.BEJV007.service;
 
 import ADA.BEJV007.exceptions.NotFoundException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
 import ADA.BEJV007.exceptions.SameCpfException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Getter
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements GeneralService <Profile> {
 

@@ -1,5 +1,7 @@
 package ADA.BEJV007.dto;
 
+import ADA.BEJV007.domain.Profile;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -22,4 +24,8 @@ public class PetSaveDTO {
     private LocalDate nascimento;
     @NotBlank(message = "Insira uma descrição do animal (cor, pelagem, raça...)")
     private String descricao;
+    @NotBlank(message = "É preciso inserir uma imagem")
+    private String linkImagem;
+    @Nullable
+    private Profile dono;
 }

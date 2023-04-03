@@ -1,7 +1,11 @@
 package ADA.BEJV007.dto;
 
+import ADA.BEJV007.domain.Profile;
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 import ADA.BEJV007.domain.Address;
@@ -18,12 +22,13 @@ public class ProfileSaveDTO {
     private String sobrenome;
     @CPF
     private String cpf;
-    @NotNull(message = "É preciso inserir um telefone.")
-    private Integer telefone;
+    @NotBlank(message = "É preciso inserir um telefone.")
+    @Pattern(regexp = "\\d{10}", message = "O campo deve conter o ddd e o número no formato: 1144444444")
+    private String telefone;
     @NotBlank(message = "É preciso inserir um endereço de e-mail")
+    @Email(message = "Insira um e-mail válido")
     private String email;
-    @NotBlank(message = "É preciso inserir um endereço")
     private Address endereco;
-    @NotNull
+    @NotNull(message = "o campo data não pode ser nulo")
     private LocalDate registro;
 }

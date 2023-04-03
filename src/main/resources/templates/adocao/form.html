@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" charset="utf-8">
+    <title>Usuarios</title>
+
+    <link href="/css/main.css" rel="stylesheet"/>
+
+    <!-- WEBJARS -->
+    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+</head>
+
+<body class="main-bg-amarelo">
+<!-- Barra de Menu -->
+<section th:insert="navbar :: navbar"></section>
+
+<section class="container">
+    <form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{nome}">
+        <input type="hidden" th:field="*{tipo}">
+        <input type="hidden" th:field="*{nascimento}">
+        <input type="hidden" th:field="*{descricao}">
+        <input type="hidden" th:field="*{status}">
+        <input type="hidden" th:field="*{dono}">
+        <input type="hidden" th:field="*{linkImagem}">
+
+
+        <div class="row">
+            <div class="col-12">
+                <h5 class="text-center main-text-castanho">Usuario</h5>
+            </div>
+        </div>
+
+            <div class="col-6 mt-1">
+                <div class="input-group input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="dono.id">ID do Dono:</label>
+                    </div>
+                    <input class="form-control" type="text" id="dono.id" name="dono.id" th:field="*{dono.id}">
+                </div>
+                <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('dono.id')}" th:text="${erro}"></p>
+            </div>
+
+        <div class="row justify-content-end">
+            <div class="col-auto mt-3">
+                <button class="btn btn-primary" type="submit" formmethod="post" th:formaction="@{/adocao_html/form}">
+                    Salvar
+                </button>
+            </div>
+        </div>
+    </form>
+    <section th:insert="mensagem :: mensagem"></section>
+</section>
+
+<script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
+		$("#mensagem").modal("show");	
+
+</script>
+
+</body>

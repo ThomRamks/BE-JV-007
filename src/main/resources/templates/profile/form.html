@@ -20,6 +20,7 @@
 <section class="container">
     <form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
         <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{endereco}">
 
         <div class="row">
             <div class="col-12">
@@ -81,7 +82,7 @@
             <div class="col-6 mt-1">
                 <div class="input-group input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="date">Data de Criacao:</label>
+                        <label class="input-group-text" for="data">Data de Criacao:</label>
                     </div>
                     <input class="form-control" type="date" name="registro" th:field="*{registro}">
                 </div>
@@ -99,7 +100,7 @@
             <div class="col-6 mt-1">
                 <div class="input-group input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="nome">Logradouro:</label>
+                        <label class="input-group-text" for="endereco.logradouro">Logradouro:</label>
                     </div>
                     <input class="form-control" type="text" id="endereco.logradouro" name="endereco.logradouro"
                            th:field="*{endereco.logradouro}">
@@ -111,7 +112,7 @@
             <div class="col-6 mt-1">
                 <div class="input-group input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="nome">Numero:</label>
+                        <label class="input-group-text" for="endereco.numero">Numero:</label>
                     </div>
                     <input class="form-control" type="text" id="endereco.numero" name="endereco.numero"
                            th:field="*{endereco.numero}">
@@ -123,7 +124,7 @@
             <div class="col-6 mt-1">
                 <div class="input-group input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="nome">CEP:</label>
+                        <label class="input-group-text" for="endereco.cep">CEP:</label>
                     </div>
                     <input class="form-control" type="text" id="endereco.cep" name="endereco.cep"
                            th:field="*{endereco.cep}">
@@ -134,7 +135,7 @@
             <div class="col-6 mt-1">
                 <div class="input-group input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="nome">Bairro:</label>
+                        <label class="input-group-text" for="endereco.bairro">Bairro:</label>
                     </div>
                     <input class="form-control" type="text" id="endereco.bairro" name="endereco.bairro"
                            th:field="*{endereco.bairro}">
@@ -146,7 +147,7 @@
             <div class="col-6 mt-1">
                 <div class="input-group input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="nome">Cidade:</label>
+                        <label class="input-group-text" for="endereco.cidade">Cidade:</label>
                     </div>
                     <input class="form-control" type="text" id="endereco.cidade" name="endereco.cidade"
                            th:field="*{endereco.cidade}">
@@ -158,7 +159,7 @@
             <div class="col-6 mt-1">
                 <div class="input-group input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="nome">Estado:</label>
+                        <label class="input-group-text" for="endereco.estado">Estado:</label>
                     </div>
                     <input class="form-control" type="text" id="endereco.estado" name="endereco.estado"
                            th:field="*{endereco.estado}">
@@ -181,7 +182,7 @@
 </section>
 
 <script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
-		$("#mensagem").modal("show");	
+    $("#mensagem").modal("show");
 
 </script>
 

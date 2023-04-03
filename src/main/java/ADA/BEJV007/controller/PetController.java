@@ -24,11 +24,6 @@ public class PetController {
     @Autowired
     private PetMapper mapper;
 
-//    @GetMapping
-//    public List<Pet>listar(){
-//        return petService.list();
-//    }
-
     @GetMapping("{id}")
     public Pet getById(@PathVariable Long id){
         return petService.findById(id);
