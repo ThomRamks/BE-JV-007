@@ -2,6 +2,7 @@ package ADA.BEJV007.domain;
 
 import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.domain.enums.TiposPet;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,8 @@ public class Pet {
     @NotBlank(message = "É preciso inserir uma imagem")
     private String linkImagem;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "PERFIS_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "ID_DONO", referencedColumnName = "ID")
     @Nullable
+    @JsonIgnoreProperties("pets")
     private Profile dono;
 }

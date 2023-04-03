@@ -20,6 +20,7 @@
 <section class="container">
     <form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
         <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{endereco}">
 
         <div class="row">
             <div class="col-12">
@@ -181,7 +182,7 @@
 </section>
 
 <script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
-		$("#mensagem").modal("show");	
+    $("#mensagem").modal("show");
 
 </script>
 

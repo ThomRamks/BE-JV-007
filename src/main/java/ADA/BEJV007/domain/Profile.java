@@ -40,7 +40,7 @@ public class Profile {
     private LocalDate registro;
     @OneToMany
     @JsonIgnoreProperties("dono")
-    @JoinColumn(name = "PERFIS_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "ID_DONO", referencedColumnName = "ID")
     private List<Pet> pets;
 
 }
