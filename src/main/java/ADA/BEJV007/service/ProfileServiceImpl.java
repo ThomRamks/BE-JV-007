@@ -1,7 +1,5 @@
 package ADA.BEJV007.service;
 
-import ADA.BEJV007.domain.Pet;
-import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

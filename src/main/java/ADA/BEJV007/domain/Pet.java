@@ -4,12 +4,9 @@ import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.domain.enums.TiposPet;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -37,7 +34,7 @@ public class Pet {
     private StatusPet status;
     @NotBlank(message = "É preciso inserir uma imagem")
     private String linkImagem;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PERFIS_ID", referencedColumnName = "ID")
     @Nullable
     private Profile dono;

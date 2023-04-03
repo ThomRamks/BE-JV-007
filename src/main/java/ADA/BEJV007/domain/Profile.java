@@ -1,5 +1,6 @@
 package ADA.BEJV007.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -31,13 +32,14 @@ public class Profile {
     @Pattern(regexp = "\\d{10}", message = "O campo deve conter o ddd e o número no formato: 1144444444")
     private String telefone;
     @NotBlank(message = "O campo e-mail é obrigatório.")
-    @Email
+    @Email(message = "Insira um e-mail válido")
     private String email;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ENDERECO")
     private Address endereco;
     private LocalDate registro;
     @OneToMany
+    @JsonIgnoreProperties("dono")
     @JoinColumn(name = "PERFIS_ID", referencedColumnName = "ID")
     private List<Pet> pets;
 
