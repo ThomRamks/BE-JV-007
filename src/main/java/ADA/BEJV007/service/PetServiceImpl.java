@@ -26,6 +26,9 @@ public class PetServiceImpl implements GeneralService <Pet> {
 
     @Override
     public Pet save(Pet pet) {
+        if(pet.getDono() != null){
+            pet.setStatus(StatusPet.ADOTADO);
+        }
         return repository.save(pet);
     }
 
@@ -44,6 +47,9 @@ public class PetServiceImpl implements GeneralService <Pet> {
     public Pet update(Long id, Pet pet) {
         if(repository.existsById(id)){
             pet.setId(id);
+            if(pet.getDono() != null){
+                pet.setStatus(StatusPet.ADOTADO);
+            }
             return repository.save(pet);
         }
         throw new NotFoundException("Pet");
