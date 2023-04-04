@@ -3,6 +3,7 @@ package ADA.BEJV007.service;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
+import ADA.BEJV007.repository.AdocaoRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
@@ -20,6 +21,7 @@ import java.util.List;
 public class ProfileServiceImpl implements GeneralService <Profile> {
 
     private final ProfileRepository repository;
+    private final AdocaoRepository adocaoRepository;
 
     public List<Profile> listar() {
         return (List<Profile>) repository.findAll(Sort.by(Sort.Direction.ASC, "nome", "sobrenome"));
@@ -66,6 +68,10 @@ public class ProfileServiceImpl implements GeneralService <Profile> {
         if(!repository.existsById(id)){
             throw new NotFoundException("Usuário");
         }
+        if(adocaoRepository.existsByIdDono_Id(id)){
+            adocaoRepository.findByIdDono_Id(id).setIdDono(null);
+        }
+
         repository.deleteById(id);
     }
 }

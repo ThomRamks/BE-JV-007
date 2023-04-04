@@ -2,6 +2,7 @@ package ADA.BEJV007.service;
 
 import ADA.BEJV007.exceptions.NotFoundException;
 import ADA.BEJV007.mapper.PetMapper;
+import ADA.BEJV007.repository.AdocaoRepository;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.repository.PetRepository;
@@ -18,6 +19,7 @@ public class PetServiceImpl implements GeneralService <Pet> {
     private PetMapper mapper;
 
     private final PetRepository repository;
+    private final AdocaoRepository adocaoRepository;
 
     @Override
     public List<Pet> list() {
@@ -59,6 +61,9 @@ public class PetServiceImpl implements GeneralService <Pet> {
     public void delete(Long id) {
         if(!repository.existsById(id)){
             throw new NotFoundException("Pet");
+        }
+        if(adocaoRepository.existsByIdPet_Id(id)){
+            adocaoRepository.findByIdPet_Id(id).setIdPet(null);
         }
         repository.deleteById(id);
     }

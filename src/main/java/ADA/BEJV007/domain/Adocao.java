@@ -15,10 +15,12 @@ public class Adocao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.MERGE)
+    @Nullable
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn (name = "id_dono")
     private Profile idDono;
-    @OneToOne(cascade = CascadeType.MERGE)
+    @Nullable
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn (name = "id_pet")
     private Pet idPet;
 }
