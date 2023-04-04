@@ -1,5 +1,7 @@
 package ADA.BEJV007.service;
 
+import ADA.BEJV007.domain.Pet;
+import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,7 @@ import ADA.BEJV007.repository.ProfileRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,6 +58,7 @@ public class ProfileServiceImpl implements GeneralService <Profile> {
             return repository.save(profile);
         }
         throw new NotFoundException("Usuário");
+
     }
 
     @Override

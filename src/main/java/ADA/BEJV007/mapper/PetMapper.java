@@ -15,7 +15,6 @@ public class PetMapper {
     public Pet pet(PetSaveDTO entradaDto) {
         return mapper.map(entradaDto, Pet.class);
     }
-
     public void pet(PetSaveDTO entradaDto, Pet pet){
         mapper.map(entradaDto, pet);
     }

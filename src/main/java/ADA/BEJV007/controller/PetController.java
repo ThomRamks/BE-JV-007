@@ -1,6 +1,5 @@
 package ADA.BEJV007.controller;
 
-import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.mapper.PetMapper;
 import ADA.BEJV007.service.GeneralService;
 import jakarta.validation.Valid;

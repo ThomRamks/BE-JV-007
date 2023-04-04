@@ -1,6 +1,5 @@
 package ADA.BEJV007.service;
 
-import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
 import ADA.BEJV007.mapper.PetMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +26,9 @@ public class PetServiceImpl implements GeneralService <Pet> {
 
     @Override
     public Pet save(Pet pet) {
-        if(pet.getDono() != null){
-            pet.setStatus(StatusPet.ADOTADO);
-        }
+//        if(pet.getDono() != null){
+//            pet.setStatus(StatusPet.ADOTADO);
+//        }
         return repository.save(pet);
     }
 
@@ -48,9 +47,9 @@ public class PetServiceImpl implements GeneralService <Pet> {
     public Pet update(Long id, Pet pet) {
         if(repository.existsById(id)){
             pet.setId(id);
-            if(pet.getDono() != null){
-                pet.setStatus(StatusPet.ADOTADO);
-            }
+//            if(pet.getDono() != null){
+//                pet.setStatus(StatusPet.ADOTADO);
+//            }
             return repository.save(pet);
         }
         throw new NotFoundException("Pet");

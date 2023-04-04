@@ -20,18 +20,18 @@
 	<section class="container d-flex flex-row">
 		<div class="card-container d-flex flex-wrap justify-content-center">
 
-		<div th:each="item : ${lista}">
+		<div th:each="item : ${listaAdocao}">
 			<div class="card mx-3 my-3" style="width: 18rem;">
-				<div class="img-card "><img th:src="${item.linkImagem}" class="card-img-top" alt="Imagem responsiva">
+				<div class="img-card "><img th:src="${item.idPet.linkImagem}" class="card-img-top" alt="Imagem responsiva">
 				</div>
 					<div class="card-body">
-					<h4 class="card-text" th:text="${item.nome}"></h4>
+					<h4 class="card-text" th:text="${item.idPet.nome}"></h4>
 				</div>
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item">Tipo: <span th:text="${item.tipo}"></span></li>
-					<li class="list-group-item" >Descrição: <span th:text="${item.descricao}"></span></li>
-					<li class="list-group-item" >Status: <span th:text="${item.status}"></span></li>
-					<li class="list-group-item" >Dono: <span th:text="${item.dono.nome}"></span></li>
+					<li class="list-group-item">Tipo: <span th:text="${item.idPet.tipo}"></span></li>
+					<li class="list-group-item" >Descrição: <span th:text="${item.idPet.descricao}"></span></li>
+					<li class="list-group-item" >Status: <span th:text="${item.idPet.status}"></span></li>
+					<li class="list-group-item" >Dono: <span th:text="${item.idDono.getNome()}"></span></li>
 				</ul>
 			</div>
 		</div>

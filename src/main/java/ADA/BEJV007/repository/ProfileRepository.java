@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
     boolean existsByCpf(String cpf);
-    Profile getByCpf(String cpf);
     List<Profile> findAll(Sort by);
 }

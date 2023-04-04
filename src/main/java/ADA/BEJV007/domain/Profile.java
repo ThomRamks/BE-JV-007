@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -19,6 +20,7 @@ import java.util.List;
 @Table(name = "PERFIS")
 public class Profile {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,12 +36,8 @@ public class Profile {
     @NotBlank(message = "O campo e-mail é obrigatório.")
     @Email(message = "Insira um e-mail válido")
     private String email;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name = "ID_ENDERECO")
     private Address endereco;
     private LocalDate registro;
-    @OneToMany(mappedBy = "dono")
-    @JsonIgnoreProperties("dono")
-    private List<Pet> pets;
-
 }
