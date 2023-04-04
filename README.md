@@ -8,6 +8,36 @@ Trata-se de uma aplicação que simula funções básicas de uma ONG: cadastro d
 A entidade pessoa tem relação ainda com outra entidade: endereços, uma vez que se faz essencial o cadastro de endereço dos potenciais adotantes.
 Nossa aplicação está baseada em dois ambientes: utilização no postman, com o CRUD básico, mas também um formulário html, onde até mesmo as fotos dos pets ficam disponíveis!
 
-Diagrama:
+##Diagrama:
 
 ![Banco_Adote_Makers](https://user-images.githubusercontent.com/116609321/229623326-66606e2b-6810-41a4-9943-ff705d66ea8c.png)
+
+
+## Como utilizar
+### Clonando o repositório do Projeto 
+
+Este repositório contém o código fonte do Projeto Adote_makers, um projeto de estudos do framework SpringBoot.
+
+Para fazer um clone deste repositório, siga os seguintes passos:
+
+1. Abra o terminal do seu sistema operacional
+2. Navegue até a pasta onde você deseja salvar o repositório
+3. Digite o comando `git clone https://github.com/ThomRamks/BE-JV-007.git` e pressione Enter
+4. O clone do repositório será criado na pasta atual
+
+Observe que é necessário ter o git instalado em sua máquina para poder utilizar este comando. Se você ainda não tem o git instalado, pode seguir as instruções em https://git-scm.com/book/en/v2/Getting-Started-Installing-Git para instalá-lo.
+
+## Como testar
+### HTML
+
+Basta abrir em seu navegador: http://localhost:8080
+E navegar pelo site
+
+### FERRAMENTA DE REQUISIÇÃO
+
+-JSONS
+---
+
+### Este projeto foi desenvolvido em dupla, composto pelos seguintes alunos:
+- Bruna Midori
+- Thomas Ramiro
