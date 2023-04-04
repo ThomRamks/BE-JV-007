@@ -18,9 +18,9 @@ public class Adocao {
     @Nullable
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn (name = "id_dono")
-    private Profile idDono;
+    private Profile dono;
     @Nullable
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn (name = "id_pet")
-    private Pet idPet;
+    private Pet pet;
 }

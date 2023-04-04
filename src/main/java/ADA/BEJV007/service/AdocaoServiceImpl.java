@@ -23,13 +23,13 @@ public class AdocaoServiceImpl implements GeneralService<Adocao> {
 
     @Override
     public Adocao save(Adocao adocao) {
-        adocao.getIdPet().setStatus(StatusPet.ADOTADO);
+        adocao.getPet().setStatus(StatusPet.ADOTADO);
         return repository.save(adocao);
     }
 
     @Override
     public Adocao saveHtml(Adocao adocao) {
-        adocao.getIdPet().setStatus(StatusPet.ADOTADO);
+        adocao.getPet().setStatus(StatusPet.ADOTADO);
         return repository.save(adocao);
     }
 

@@ -20,7 +20,7 @@
 <section class="container">
     <form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
         <input type="hidden" th:field="*{id}">
-        <input type="hidden" th:field="*{idPet}">
+        <input type="hidden" th:field="*{pet}">
 
         <div class="row">
             <div class="col-12">
@@ -31,12 +31,12 @@
         <div class="col-6 mt-1">
             <div class="input-group input-group">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="idDono.id">ID do Dono:</label>
+                    <label class="input-group-text" for="dono.id">ID do Dono:</label>
                 </div>
-                <input class="form-control" type="text" id="idDono.id" name="idDono.id"
-                       th:field="*{idDono.id}">
+                <input class="form-control" type="text" id="dono.id" name="dono.id"
+                       th:field="*{dono.id}">
             </div>
-            <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('idDono.id')}" th:text="${erro}"></p>
+            <p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('dono.id')}" th:text="${erro}"></p>
         </div>
 
         <div class="row justify-content-end">

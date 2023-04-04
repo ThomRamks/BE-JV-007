@@ -34,7 +34,7 @@ public class AdocaoControllerHtml {
 
 
     private ModelAndView form(Pet pet, Adocao adocao, String sucesso, String erro) {
-        adocao.setIdPet(pet);
+        adocao.setPet(pet);
         return new ModelAndView("adocao/form")
                 .addObject("model", adocao)
                 .addObject("sucesso", sucesso)

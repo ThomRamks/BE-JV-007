@@ -20,7 +20,6 @@ import java.util.List;
 @Table(name = "PERFIS")
 public class Profile {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

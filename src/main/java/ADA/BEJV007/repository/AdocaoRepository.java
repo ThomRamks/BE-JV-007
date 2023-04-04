@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdocaoRepository extends CrudRepository<Adocao, Long> {
-    boolean existsByIdDono_Id(Long id);
-    boolean existsByIdPet_Id(Long id);
-    Adocao findByIdDono_Id(Long id);
-    Adocao findByIdPet_Id(Long id);
+    boolean existsByDono_Id(Long id);
+    boolean existsByPet_Id(Long id);
+    Adocao findByDono_Id(Long id);
+    Adocao findByPet_Id(Long id);
 
 }
 

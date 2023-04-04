@@ -68,8 +68,11 @@ public class ProfileServiceImpl implements GeneralService <Profile> {
         if(!repository.existsById(id)){
             throw new NotFoundException("Usuário");
         }
-        if(adocaoRepository.existsByIdDono_Id(id)){
-            adocaoRepository.findByIdDono_Id(id).setIdDono(null);
+        if(adocaoRepository.existsByDono_Id(id)){
+            adocaoRepository.findByDono_Id(id).setDono(null);
+            if(adocaoRepository.findByPet_Id(id).getPet() == null && adocaoRepository.findByPet_Id(id).getDono() == null){
+                adocaoRepository.deleteById(adocaoRepository.findByDono_Id(id).getId());
+            }
         }
 
         repository.deleteById(id);

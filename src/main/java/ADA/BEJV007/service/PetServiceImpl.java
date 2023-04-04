@@ -62,8 +62,11 @@ public class PetServiceImpl implements GeneralService <Pet> {
         if(!repository.existsById(id)){
             throw new NotFoundException("Pet");
         }
-        if(adocaoRepository.existsByIdPet_Id(id)){
-            adocaoRepository.findByIdPet_Id(id).setIdPet(null);
+        if(adocaoRepository.existsByPet_Id(id)){
+            adocaoRepository.findByPet_Id(id).setPet(null);
+            if(adocaoRepository.findByPet_Id(id).getPet() == null && adocaoRepository.findByPet_Id(id).getDono() == null){
+                adocaoRepository.deleteById(adocaoRepository.findByPet_Id(id).getId());
+            }
         }
         repository.deleteById(id);
     }
