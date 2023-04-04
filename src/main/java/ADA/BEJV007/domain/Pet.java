@@ -35,8 +35,7 @@ public class Pet {
     private StatusPet status;
     @NotBlank(message = "É preciso inserir uma imagem")
     private String linkImagem;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_DONO", referencedColumnName = "ID")
+    @ManyToOne
     @Nullable
     @JsonIgnoreProperties("pets")
     private Profile dono;

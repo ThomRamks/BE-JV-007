@@ -29,7 +29,6 @@ public class ProfileServiceImpl implements GeneralService <Profile> {
 
     @Override
     public Profile save(Profile profile) {
-//        if(list().stream().anyMatch(usuario -> usuario.getCpf().equals(profile.getCpf()) && !usuario.getId().equals(profile.getId())))
         if(repository.existsByCpf(profile.getCpf())){
             throw new SameCpfException();
         }

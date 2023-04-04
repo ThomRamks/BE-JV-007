@@ -65,11 +65,11 @@ public class AdocaoControllerHtml {
     }
 
     @PostMapping("form")
-    public ModelAndView savehtml(@Valid @ModelAttribute("model") Pet pet, Long id, BindingResult result) {
+    public ModelAndView savehtml(@Valid @ModelAttribute("model") Pet pet, BindingResult result) {
         if (result.hasErrors()) {
             return listarDisponiveis();
         }
-        pet.setDono(profileService.findById(id));
+        Profile dono = profileService.findById(pet.getDono().getId());
         pet.setStatus(StatusPet.ADOTADO);
         petService.saveHtml(pet);
         return listarAdotados();

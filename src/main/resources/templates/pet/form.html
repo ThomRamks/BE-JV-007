@@ -2,113 +2,111 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" charset="utf-8">
-<title>Adote Makers</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" charset="utf-8">
+	<title>Adote Makers</title>
 
-<link href="/css/main.css" rel="stylesheet" />
+	<link href="/css/main.css" rel="stylesheet" />
 
-<!-- WEBJARS -->
-<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<!-- WEBJARS -->
+	<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 
 <body class="main-bg-amarelo">
-		<!-- Barra de Menu -->
-	<section th:insert="navbar :: navbar"></section>
-	
-	<section class="container">
-		<form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
-			<input type="hidden" th:field="*{id}">
-			<input type="hidden" class="form-control" name="nascimento" th:field="*{nascimento}">
+<!-- Barra de Menu -->
+<section th:insert="navbar :: navbar"></section>
 
-			<div class="row">
-				<div class="col-12">
-					<h5 class="text-center main-text-castanho">Cadastro de Pets</h5>
+<section class="container">
+	<form class="shadow-sm rounded mt-4 mb-2 p-2" enctype="multipart/form-data" th:object="${model}">
+		<input type="hidden" th:field="*{id}">
+		<input type="hidden" class="form-control" name="nascimento" th:field="*{nascimento}">
+
+		<div class="row">
+			<div class="col-12">
+				<h5 class="text-center main-text-castanho">Cadastro de Pets</h5>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 mt-3">
+				<div class="input-group input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="nome">Nome:</label>
+					</div>
+					<input class="form-control" type="text" id="nome" name="nome" th:field="*{nome}" >
 				</div>
+				<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('nome')}" th:text="${erro}"></p>
 			</div>
 
-			<div class="row">
-				<div class="col-12 mt-3">
-					<div class="input-group input-group">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="nome">Nome:</label>
-						</div>
-						<input class="form-control" type="text" id="nome" name="nome" th:field="*{nome}" >
+			<div class="col-6 mt-1">
+				<div class="input-group input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="status">Status:</label>
 					</div>
-					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('nome')}" th:text="${erro}"></p>
+					<select id="status" class="form-control" name="status">
+						<option th:value="${null}" th:selected="${model.status == null}">Escolha um...</option>
+						<option th:each="e : ${statuspets}" th:value="${e}" th:text="${e}" th:selected="${e.equals(model.status)}"></option>
+					</select>
 				</div>
-
-				<div class="col-6 mt-1">
-					<div class="input-group input-group">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="status">Status:</label>
-						</div>
-						<select id="status" class="form-control" name="status">
-							<option th:value="${null}" th:selected="${model.status == null}">Escolha um...</option>
-							<option th:each="e : ${statuspets}" th:value="${e}" th:text="${e}" th:selected="${e.equals(model.status)}"></option>
-						</select>
-					</div>
-					<p  class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('status')}" th:text="${erro}"></p>
-				</div>
-
-				<div class="col-6 mt-1">
-					<div class="input-group input-group">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="tipo">Tipo:</label>
-					</div>
-						<select id="tipo"  class="form-control" name="tipo">
-							<option th:value="${null}" th:selected="${model.tipo == null}">Escolha um...</option>
-							<option th:each="e : ${tipos}" th:value="${e}" th:text="${e}" th:selected="${e.equals(model.tipo)}"></option>
-						</select>
-					</div>
-					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('tipo')}" th:text="${erro}"></p>
-				</div>
-
-				<div class="col-6 mt-1">
-					<div class="input-group input-group">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="descricao">Descrição:</label>
-						</div>
-						<input class="form-control" type="text" id="descricao" name="dono" th:field="*{descricao}" >
-					</div>
-					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('descricao')}" th:text="${erro}"></p>
-				</div>
-
-				<div class="col-6 mt-1">
-					<div class="input-group input-group">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="linkImagem">Imagem:</label>
-						</div>
-						<input class="form-control" type="text" id="linkImagem" name="linkImagem" th:field="*{linkImagem}" >
-					</div>
-					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('linkImagem')}" th:text="${erro}"></p>
-				</div>
-
-				<div class="col-6 mt-1">
-					<div class="input-group input-group">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="date">Nascimento:</label>
-						</div>
-						<input class="form-control" type="date" name="nascimento" th:field="*{nascimento}">
-					</div>
-					<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('nascimento')}" th:text="${erro}"></p>
-				</div>
+				<p  class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('status')}" th:text="${erro}"></p>
 			</div>
 
-
-
-			<div class="row justify-content-end">
-				<div class="col-auto mt-3">
-					<button class="btn btn-primary" type="submit" formmethod="post" th:formaction="@{/pets_html/form}">Salvar</button>
+			<div class="col-6 mt-1">
+				<div class="input-group input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="tipo">Tipo:</label>
+					</div>
+					<select id="tipo"  class="form-control" name="tipo">
+						<option th:value="${null}" th:selected="${model.tipo == null}">Escolha um...</option>
+						<option th:each="e : ${tipos}" th:value="${e}" th:text="${e}" th:selected="${e.equals(model.tipo)}"></option>
+					</select>
 				</div>
+				<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('tipo')}" th:text="${erro}"></p>
 			</div>
-		</form>
+
+			<div class="col-6 mt-1">
+				<div class="input-group input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="descricao">Descrição:</label>
+					</div>
+					<input class="form-control" type="text" id="descricao" name="dono" th:field="*{descricao}" >
+				</div>
+				<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('descricao')}" th:text="${erro}"></p>
+			</div>
+
+			<div class="col-6 mt-1">
+				<div class="input-group input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="linkImagem">Imagem:</label>
+					</div>
+					<input class="form-control" type="text" id="linkImagem" name="linkImagem" th:field="*{linkImagem}" >
+				</div>
+				<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('linkImagem')}" th:text="${erro}"></p>
+			</div>
+
+			<div class="col-6 mt-1">
+				<div class="input-group input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="date">Nascimento:</label>
+					</div>
+					<input class="form-control" type="date" name="nascimento" th:field="*{nascimento}">
+				</div>
+				<p class="text-danger m-0 p-0" th:each="erro : ${#fields.errors('nascimento')}" th:text="${erro}"></p>
+			</div>
+		</div>
+
+		<div class="row justify-content-end">
+			<div class="col-auto mt-3">
+				<button class="btn btn-primary" type="submit" formmethod="post" th:formaction="@{/pets_html/form}">Salvar</button>
+			</div>
+		</div>
+	</form>
 	<section th:insert="mensagem :: mensagem"></section>
-	</section>
-	
-	<script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
-		$("#mensagem").modal("show");	
-	</script>	
+</section>
+
+<script th:if="${sucesso != null || erro != null || alerta != null}" type="text/javascript">
+	$("#mensagem").modal("show");
+</script>
 
 </body>

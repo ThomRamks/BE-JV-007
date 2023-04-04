@@ -1,5 +1,6 @@
 package ADA.BEJV007.controller.html;
 
+import ADA.BEJV007.domain.Address;
 import ADA.BEJV007.domain.Profile;
 import ADA.BEJV007.mapper.ProfileMapper;
 import ADA.BEJV007.service.GeneralService;
@@ -19,6 +20,7 @@ public class ProfileControllerHtml {
 
     @Autowired
     private GeneralService<Profile> profileService;
+    private GeneralService<Address>addressService;
     @Autowired
     private ProfileMapper mapper;
 
@@ -28,6 +30,14 @@ public class ProfileControllerHtml {
                 .addObject("sucesso", sucesso)
                 .addObject("erro", erro);
     }
+
+//    private ModelAndView form(Profile model, Address address, String sucesso, String erro) {
+//        return new ModelAndView("profile/form")
+//                .addObject("model", model)
+//                .addObject("address", address)
+//                .addObject("sucesso", sucesso)
+//                .addObject("erro", erro);
+//    }
 
     private ModelAndView form(List<Profile> lista, String sucesso, String erro) {
         return new ModelAndView("profile/table")
@@ -40,6 +50,22 @@ public class ProfileControllerHtml {
     public ModelAndView listar() {
         return form(profileService.list(), null, null);
     }
+
+
+
+//    @GetMapping("form")
+//    public ModelAndView pegar(@RequestParam(value = "id", required = false) Long id) {
+//        return form(id != null ? profileService.findById(id) : new Profile(), id != null ? addressService.findById(id) : new Address(), null, null);
+//    }
+//
+//    @PostMapping("form")
+//    public ModelAndView savehtml(@Valid @ModelAttribute("model") Profile profile, @Valid @ModelAttribute("address") Address address, BindingResult result){
+//        if (result.hasErrors()) {
+//            return form(profile, address, null, "Erro ao salvar Usuário");
+//        }
+//        profileService.saveHtml(profile);
+//        return form(new Profile(), new Address(), "Usuario salvo com sucesso", null);
+//    }
 
     @GetMapping("form")
     public ModelAndView pegar(@RequestParam(value = "id", required = false) Long id) {
