@@ -10,7 +10,8 @@ Nossa aplicação está baseada em dois ambientes: utilização no postman, com 
 
 ##Diagrama:
 
-![Banco_Adote_Makers](https://user-images.githubusercontent.com/116609321/229623326-66606e2b-6810-41a4-9943-ff705d66ea8c.png)
+![Banco_Adote_Makers](https://user-images.githubusercontent.com/116609321/229939983-6e35a610-477f-41f2-8f16-8cb6a2bd25bf.png)
+
 
 
 ## Como utilizar

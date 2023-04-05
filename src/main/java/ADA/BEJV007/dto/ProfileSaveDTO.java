@@ -1,7 +1,6 @@
 package ADA.BEJV007.dto;
 
-import ADA.BEJV007.domain.Profile;
-import jakarta.annotation.Nullable;
+import ADA.BEJV007.domain.Pet;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +11,7 @@ import ADA.BEJV007.domain.Address;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Setter
 @Getter

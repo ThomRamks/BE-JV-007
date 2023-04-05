@@ -1,8 +1,9 @@
 package ADA.BEJV007.service;
 
-import ADA.BEJV007.domain.enums.StatusPet;
+import ADA.BEJV007.domain.Adocao;
 import ADA.BEJV007.exceptions.NotFoundException;
 import ADA.BEJV007.mapper.PetMapper;
+import ADA.BEJV007.repository.AdocaoRepository;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.repository.PetRepository;
@@ -17,8 +18,10 @@ public class PetServiceImpl implements GeneralService <Pet> {
 
     @Autowired
     private PetMapper mapper;
-
-    private final PetRepository repository;
+    @Autowired
+    private PetRepository repository;
+    @Autowired
+    private AdocaoRepository adocaoRepository;
 
     @Override
     public List<Pet> list() {
@@ -27,9 +30,6 @@ public class PetServiceImpl implements GeneralService <Pet> {
 
     @Override
     public Pet save(Pet pet) {
-        if(pet.getDono() != null){
-            pet.setStatus(StatusPet.ADOTADO);
-        }
         return repository.save(pet);
     }
 
@@ -48,9 +48,6 @@ public class PetServiceImpl implements GeneralService <Pet> {
     public Pet update(Long id, Pet pet) {
         if(repository.existsById(id)){
             pet.setId(id);
-            if(pet.getDono() != null){
-                pet.setStatus(StatusPet.ADOTADO);
-            }
             return repository.save(pet);
         }
         throw new NotFoundException("Pet");
@@ -60,6 +57,9 @@ public class PetServiceImpl implements GeneralService <Pet> {
     public void delete(Long id) {
         if(!repository.existsById(id)){
             throw new NotFoundException("Pet");
+        }
+        if(adocaoRepository.existsByPet_Id(id)){
+           adocaoRepository.delete(adocaoRepository.findByPet_Id(id));
         }
         repository.deleteById(id);
     }

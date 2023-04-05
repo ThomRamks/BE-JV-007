@@ -26,6 +26,4 @@ public class PetSaveDTO {
     private String descricao;
     @NotBlank(message = "É preciso inserir uma imagem")
     private String linkImagem;
-    @Nullable
-    private Profile dono;
 }
