@@ -39,7 +39,7 @@ public class AddressController {
     }
 
     @PutMapping("{id}")
-    public Address update(@PathVariable Long id, @RequestBody AddressSaveDTO dto){
+    public Address update(@PathVariable Long id, @Valid @RequestBody AddressSaveDTO dto){
         Address address = mapper.address(dto);
         return addressService.update(id, address);
     }

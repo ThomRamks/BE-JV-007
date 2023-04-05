@@ -42,7 +42,7 @@ public class PetController {
     }
 
     @PutMapping("{id}")
-    public Pet update (@PathVariable Long id, @RequestBody PetSaveDTO dto){
+    public Pet update (@PathVariable Long id, @Valid @RequestBody PetSaveDTO dto){
         Pet pet = mapper.pet(dto);
         return petService.update(id, pet);
     }

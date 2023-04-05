@@ -11,4 +11,6 @@ import java.util.List;
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
     boolean existsByCpf(String cpf);
     List<Profile> findAll(Sort by);
+    Profile findByEndereco_Id(Long id);
+    boolean existsByEndereco_Id(Long id);
 }

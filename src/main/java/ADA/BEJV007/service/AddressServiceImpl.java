@@ -1,6 +1,7 @@
 package ADA.BEJV007.service;
 
 import ADA.BEJV007.exceptions.NotFoundException;
+import ADA.BEJV007.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Address;
 import ADA.BEJV007.repository.AddressRepository;
@@ -13,6 +14,7 @@ import java.util.List;
 public class AddressServiceImpl implements GeneralService <Address> {
 
     private final AddressRepository repository;
+    private final ProfileRepository profileRepository;
 
     @Override
     public List<Address> list() {
@@ -48,6 +50,9 @@ public class AddressServiceImpl implements GeneralService <Address> {
     public void delete(Long id) {
         if(!repository.existsById(id)){
             throw new NotFoundException("Endereço");
+        }
+        if(profileRepository.existsByEndereco_Id(id)){
+            profileRepository.findByEndereco_Id(id).setEndereco(null);
         }
         repository.deleteById(id);
     }
