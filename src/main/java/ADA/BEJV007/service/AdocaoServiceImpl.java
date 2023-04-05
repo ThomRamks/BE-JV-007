@@ -6,6 +6,7 @@ import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
 import ADA.BEJV007.repository.AdocaoRepository;
 import ADA.BEJV007.repository.PetRepository;
+import ADA.BEJV007.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class AdocaoServiceImpl implements GeneralService<Adocao> {
     private AdocaoRepository repository;
     @Autowired
     private PetRepository petRepository;
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @Override
     public List<Adocao> list() {
@@ -27,6 +30,12 @@ public class AdocaoServiceImpl implements GeneralService<Adocao> {
 
     @Override
     public Adocao save(Adocao adocao) {
+        if(!profileRepository.existsById(adocao.getDono().getId())){
+            throw new NotFoundException("Perfil");
+        } else if (!petRepository.existsById(adocao.getPet().getId())){
+            throw new NotFoundException("Pet");
+        }
+        petRepository.findById(adocao.getPet().getId()).get().setStatus(StatusPet.ADOTADO);
         adocao.getPet().setStatus(StatusPet.ADOTADO);
         return repository.save(adocao);
     }
@@ -56,7 +65,6 @@ public class AdocaoServiceImpl implements GeneralService<Adocao> {
         if (!repository.existsById(id)) {
             throw new NotFoundException("Adoção");
         }
-
         Adocao adocao = repository.findById(id).get();
         adocao.getPet().setStatus(StatusPet.DISPONIVEL);
 

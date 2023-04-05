@@ -1,6 +1,7 @@
 package ADA.BEJV007.dto;
 
 import ADA.BEJV007.domain.Pet;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +29,7 @@ public class ProfileSaveDTO {
     @NotBlank(message = "É preciso inserir um endereço de e-mail")
     @Email(message = "Insira um e-mail válido")
     private String email;
+    @Nullable
     private Address endereco;
     @NotNull(message = "o campo data não pode ser nulo")
     private LocalDate registro;

@@ -41,7 +41,7 @@ public class ProfileController {
     }
 
     @PutMapping("{id}")
-    public Profile update(@PathVariable Long id, @RequestBody ProfileSaveDTO dto){
+    public Profile update(@PathVariable Long id, @Valid @RequestBody ProfileSaveDTO dto){
         Profile profile = mapper.profile(dto);
         return profileService.update(id, profile);
     }

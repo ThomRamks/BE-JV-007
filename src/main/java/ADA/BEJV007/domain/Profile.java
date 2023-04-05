@@ -35,7 +35,7 @@ public class Profile {
     @NotBlank(message = "O campo e-mail é obrigatório.")
     @Email(message = "Insira um e-mail válido")
     private String email;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.DETACH})
     @JoinColumn(name = "ID_ENDERECO")
     private Address endereco;
     private LocalDate registro;

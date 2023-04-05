@@ -40,7 +40,7 @@ public class AdocaoController {
     }
 
     @PutMapping("{id}")
-    public Adocao update(@PathVariable Long id, @RequestBody AdocaoSaveDTO dto) {
+    public Adocao update(@PathVariable Long id, @Valid @RequestBody AdocaoSaveDTO dto) {
         Adocao adocao = mapper.adocao(dto);
         return adocaoService.update(id, adocao);
     }
