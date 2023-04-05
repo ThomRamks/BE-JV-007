@@ -2,6 +2,7 @@ package ADA.BEJV007.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
@@ -16,10 +17,12 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String logradouro;
-    private String numero;
+    @NotNull(message = "CEP é um campo obrigatorio.")
     private String cep;
+    private String logradouro;
+    private String adicional;
     private String bairro;
-    private String cidade;
-    private String estado;
+    private String localidade;
+    private String uf;
+    private String numero;
 }
