@@ -5,7 +5,9 @@ import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
 import ADA.BEJV007.repository.AdocaoRepository;
+import ADA.BEJV007.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AdocaoServiceImpl implements GeneralService<Adocao> {
-
-    private final AdocaoRepository repository;
+    @Autowired
+    private AdocaoRepository repository;
+    @Autowired
+    private PetRepository petRepository;
 
     @Override
     public List<Adocao> list() {
@@ -52,6 +56,10 @@ public class AdocaoServiceImpl implements GeneralService<Adocao> {
         if (!repository.existsById(id)) {
             throw new NotFoundException("Adoção");
         }
+
+        Adocao adocao = repository.findById(id).get();
+        adocao.getPet().setStatus(StatusPet.DISPONIVEL);
+
         repository.deleteById(id);
     }
 }

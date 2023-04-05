@@ -1,5 +1,6 @@
 package ADA.BEJV007.service;
 
+import ADA.BEJV007.domain.Adocao;
 import ADA.BEJV007.domain.Pet;
 import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
 import ADA.BEJV007.exceptions.SameCpfException;
 import ADA.BEJV007.repository.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements GeneralService <Profile> {
 
-    private final ProfileRepository repository;
-    private final AdocaoRepository adocaoRepository;
+    @Autowired
+    private ProfileRepository repository;
+    @Autowired
+    private AdocaoRepository adocaoRepository;
+    @Autowired
+    private AdocaoServiceImpl adocaoService;
 
     public List<Profile> listar() {
         return (List<Profile>) repository.findAll(Sort.by(Sort.Direction.ASC, "nome", "sobrenome"));
@@ -66,13 +72,11 @@ public class ProfileServiceImpl implements GeneralService <Profile> {
     @Override
     public void delete(Long id) {
         if(!repository.existsById(id)){
-            throw new NotFoundException("Usuário");
+            throw new NotFoundException("Perfil");
         }
-        if(adocaoRepository.existsByDono_Id(id)){
-            adocaoRepository.findByDono_Id(id).setDono(null);
-            if(adocaoRepository.findByPet_Id(id).getPet() == null && adocaoRepository.findByPet_Id(id).getDono() == null){
-                adocaoRepository.deleteById(adocaoRepository.findByDono_Id(id).getId());
-            }
+        List<Adocao> adocaoProfile = adocaoRepository.findAllByDono_Id(id);
+        if(adocaoProfile != null){
+            adocaoProfile.forEach(adocao -> adocaoService.delete(adocao.getId()));
         }
 
         repository.deleteById(id);

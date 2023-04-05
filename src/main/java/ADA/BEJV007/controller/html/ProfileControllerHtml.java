@@ -20,6 +20,7 @@ public class ProfileControllerHtml {
 
     @Autowired
     private GeneralService<Profile> profileService;
+    @Autowired
     private GeneralService<Address>addressService;
     @Autowired
     private ProfileMapper mapper;
