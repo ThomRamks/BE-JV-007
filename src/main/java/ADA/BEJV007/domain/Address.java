@@ -17,7 +17,6 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "CEP é um campo obrigatorio.")
     private String cep;
     private String logradouro;
     private String adicional;

@@ -68,8 +68,8 @@ public class AddressControllerHtml {
         if (result.hasErrors()) {
            return form(address, null, "Erro ao salvar Endereço");
         }
-        addressService.saveHtml(address);
-        return form(new Address(), "Endereco salvo com sucesso", null);
+        Address address1 = addressService.saveHtml(address);
+        return profileControllerHtml.form(new Profile(), address1, "Endereco salvo com sucesso", null);
     }
 
     @GetMapping("excluir")

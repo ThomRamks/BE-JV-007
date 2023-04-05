@@ -51,10 +51,11 @@
 							<td th:text="${item.email}"/>
 							<td th:text="${item.endereco.logradouro}"/>
 							<td th:text="${item.endereco.numero}"/>
+							<td th:text="${item.endereco.adicional}"/>
 							<td th:text="${item.endereco.cep}"/>
 							<td th:text="${item.endereco.bairro}"/>
-							<td th:text="${item.endereco.cidade}"/>
-							<td th:text="${item.endereco.estado}"/>
+							<td th:text="${item.endereco.localidade}"/>
+							<td th:text="${item.endereco.uf}"/>
 							<td th:text="${item.registro}"/>
 							<td class="text-center align-middle"><a th:href="@{/profile_html/form(id=${item.id})}" class="btn btn btn-warning btn-sm">Editar</a></td>
 							<td class="text-center align-middle" scope="row">
