@@ -26,6 +26,7 @@ public class ProfileControllerHtml {
     private ProfileMapper mapper;
 
     protected ModelAndView form(Profile model, Address address, String sucesso, String erro) {
+        model.setEndereco(address);
         return new ModelAndView("profile/form")
                 .addObject("model", model)
                 .addObject("sucesso", sucesso)
@@ -46,7 +47,7 @@ public class ProfileControllerHtml {
 
     @GetMapping("form")
     public ModelAndView pegar(@RequestParam(value = "id", required = false) Long id) {
-        return form(id != null ? profileService.findById(id) : new Profile(), new Address(),null, null);
+        return form(id != null ? profileService.findById(id) : new Profile(), id != null ? addressService.findById(profileService.findById(id).getEndereco().getId()) : new Address(),null, null);
     }
 
     @PostMapping("form")
@@ -54,7 +55,6 @@ public class ProfileControllerHtml {
         if (result.hasErrors()) {
             return form(profile, address, null, "Erro ao salvar Usuário");
         }
-        profile.setEndereco(address);
         profileService.saveHtml(profile);
         return form(new Profile(), address, "Usuario salvo com sucesso", null);
     }
