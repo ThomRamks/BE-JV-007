@@ -25,13 +25,14 @@ public class AddressServiceImpl implements GeneralService <Address> {
     @Override
     public Address save(Address address) {
         Address addressAux = consumer.apiAddress(address);
+        addressAux.setNumero(address.getNumero());
+        addressAux.setAdicional(address.getAdicional());
         return repository.save(addressAux);
     }
 
     @Override
     public Address saveHtml(Address address) {
-        Address addressAux = consumer.apiAddress(address);
-        repository.save(addressAux);
+        repository.save(address);
         return address;
     }
 
@@ -45,6 +46,9 @@ public class AddressServiceImpl implements GeneralService <Address> {
         if(repository.existsById(id)){
             address.setId(id);
             Address addressAux = consumer.apiAddress(address);
+            addressAux.setId(id);
+            addressAux.setNumero(address.getNumero());
+            addressAux.setAdicional(address.getAdicional());
             return repository.save(addressAux);
         }
         throw new NotFoundException("Endereço");

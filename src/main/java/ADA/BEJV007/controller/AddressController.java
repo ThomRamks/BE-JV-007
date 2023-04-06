@@ -42,9 +42,9 @@ public class AddressController {
     @ResponseStatus(HttpStatus.CREATED)
     public Address save(@Valid @RequestBody AddressSaveDTO dto) {
         Address address = new Address();
-        address = mapper.address(dto);
         address.setNumero(dto.getNumero());
         address.setAdicional(dto.getAdicional());
+        address = mapper.address(dto);
         return addressService.save(address);
     }
 

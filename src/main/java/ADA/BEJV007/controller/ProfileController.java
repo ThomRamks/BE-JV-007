@@ -58,6 +58,9 @@ public class ProfileController {
 
     @PutMapping("{id}")
     public Profile update(@PathVariable Long id, @Valid @RequestBody ProfileSaveDTO dto){
+        if(dto.getEndereco() != null){
+            dto.setEndereco(addressService.update(profileService.findById(id).getEndereco().getId(), dto.getEndereco()));
+        }
         Profile profile = mapper.profile(dto);
         return profileService.update(id, profile);
     }
