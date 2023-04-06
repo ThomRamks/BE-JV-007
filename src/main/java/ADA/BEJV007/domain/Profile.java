@@ -1,6 +1,5 @@
 package ADA.BEJV007.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -8,8 +7,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

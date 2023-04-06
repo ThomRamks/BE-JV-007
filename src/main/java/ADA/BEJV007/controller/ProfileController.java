@@ -5,7 +5,6 @@ import ADA.BEJV007.dto.AddressSaveDTO;
 import ADA.BEJV007.mapper.AddressMapper;
 import ADA.BEJV007.mapper.ProfileMapper;
 import ADA.BEJV007.service.GeneralService;
-import com.google.gson.Gson;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
@@ -13,13 +12,6 @@ import ADA.BEJV007.dto.ProfileSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -48,7 +40,7 @@ public class ProfileController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Profile save(@Valid @RequestBody ProfileSaveDTO dto) throws IOException {
+    public Profile save(@Valid @RequestBody ProfileSaveDTO dto)  {
         if(dto.getEndereco() != null){
             dto.setEndereco(addressService.save(dto.getEndereco()));
         }

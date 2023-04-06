@@ -1,8 +1,6 @@
 package ADA.BEJV007.service;
 
 import ADA.BEJV007.domain.Adocao;
-import ADA.BEJV007.domain.Pet;
-import ADA.BEJV007.domain.enums.StatusPet;
 import ADA.BEJV007.exceptions.NotFoundException;
 import ADA.BEJV007.repository.AdocaoRepository;
 import lombok.Getter;
@@ -13,8 +11,6 @@ import ADA.BEJV007.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

@@ -1,12 +1,9 @@
 package ADA.BEJV007.controller.html;
 
-import ADA.BEJV007.controller.ProfileController;
 import ADA.BEJV007.domain.Address;
 import ADA.BEJV007.domain.Profile;
-import ADA.BEJV007.dto.AddressSaveDTO;
-import ADA.BEJV007.mapper.ProfileMapper;
+import ADA.BEJV007.service.APIConsumer;
 import ADA.BEJV007.service.GeneralService;
-import com.google.gson.Gson;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+
 
 @RequiredArgsConstructor
 @RequestMapping("enderecos_html")
@@ -30,6 +22,7 @@ public class AddressControllerHtml {
     private GeneralService<Address>addressService;
     @Autowired
     private ProfileControllerHtml profileControllerHtml;
+    private final APIConsumer consumer;
 
     private ModelAndView form(Address model, String sucesso, String erro) {
         return new ModelAndView("adress/form")
@@ -44,21 +37,13 @@ public class AddressControllerHtml {
     }
 
     @PostMapping("form/cep")
-    public ModelAndView cephtml(@Valid @ModelAttribute("model") Address address, BindingResult result) throws IOException {
+    public ModelAndView cephtml(@Valid @ModelAttribute("model") Address address, BindingResult result)  {
         if (result.hasErrors()) {
             return form(address, null, "Erro ao encontrar Endereço");
         }
-        URL url = new URL("https://viacep.com.br/ws/" +address.getCep()+"/json/");
-        URLConnection connection = url.openConnection();
-        InputStream is = connection.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-        String cep = "";
-        StringBuilder jsonCep = new StringBuilder();
-        while((cep = br.readLine()) != null){
-            jsonCep.append(cep);
-        }
-        Address addressAux = new Gson().fromJson(jsonCep.toString(), Address.class);
+        Address addressAux = consumer.apiAddress(address);
+        addressAux.setNumero(address.getNumero());
+        addressAux.setAdicional(address.getAdicional());
         Address address1 = addressService.saveHtml(addressAux);
         return form(addressService.findById(address1.getId()), "CEP encontrado", null);
     }

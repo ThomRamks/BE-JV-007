@@ -1,9 +1,7 @@
 package ADA.BEJV007.controller;
 
 import ADA.BEJV007.mapper.AddressMapper;
-import ADA.BEJV007.service.APIConsumer;
 import ADA.BEJV007.service.GeneralService;
-import com.google.gson.Gson;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Address;
@@ -11,12 +9,6 @@ import ADA.BEJV007.dto.AddressSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 @RequiredArgsConstructor
