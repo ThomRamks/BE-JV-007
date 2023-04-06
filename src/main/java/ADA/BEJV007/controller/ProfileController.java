@@ -5,7 +5,6 @@ import ADA.BEJV007.dto.AddressSaveDTO;
 import ADA.BEJV007.mapper.AddressMapper;
 import ADA.BEJV007.mapper.ProfileMapper;
 import ADA.BEJV007.service.GeneralService;
-import com.google.gson.Gson;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ADA.BEJV007.domain.Profile;
@@ -13,13 +12,6 @@ import ADA.BEJV007.dto.ProfileSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -34,7 +26,7 @@ public class ProfileController {
     @Autowired
     private AddressMapper mapperAdress;
     @Autowired
-    private GeneralService<Address> adocaoService;
+    private GeneralService<Address> addressService;
 
     @GetMapping
     public List<Profile> list(){
@@ -48,25 +40,9 @@ public class ProfileController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Profile save(@Valid @RequestBody ProfileSaveDTO dto) throws IOException {
+    public Profile save(@Valid @RequestBody ProfileSaveDTO dto)  {
         if(dto.getEndereco() != null){
-            URL url = new URL("https://viacep.com.br/ws/" +dto.getEndereco().getCep()+"/json/");
-            URLConnection connection = url.openConnection();
-            InputStream is = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-            String cep = "";
-            StringBuilder jsonCep = new StringBuilder();
-            while((cep = br.readLine()) != null){
-                jsonCep.append(cep);
-            }
-            AddressSaveDTO adressAux = new Gson().fromJson(jsonCep.toString(), AddressSaveDTO.class);
-            adressAux.setNumero(dto.getEndereco().getNumero());
-            adressAux.setAdicional(dto.getEndereco().getAdicional());
-
-            Address address = mapperAdress.address(adressAux);
-            adocaoService.save(address);
-            dto.setEndereco(address);
+            dto.setEndereco(addressService.save(dto.getEndereco()));
         }
         Profile profile = mapper.profile(dto);
         return profileService.save(profile);
@@ -74,6 +50,9 @@ public class ProfileController {
 
     @PutMapping("{id}")
     public Profile update(@PathVariable Long id, @Valid @RequestBody ProfileSaveDTO dto){
+        if(dto.getEndereco() != null){
+            dto.setEndereco(addressService.update(profileService.findById(id).getEndereco().getId(), dto.getEndereco()));
+        }
         Profile profile = mapper.profile(dto);
         return profileService.update(id, profile);
     }
