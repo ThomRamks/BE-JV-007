@@ -38,6 +38,8 @@ E navegar pelo site
 
 -JSONS
 ---
+Arquivo com exemplos de JSONS
+https://drive.google.com/file/d/1fWgxWFcXps9bqSMUkydiMskP7R4DWTzE/view?usp=sharing
 
 ### Este projeto foi desenvolvido em dupla, composto pelos seguintes alunos:
 - Bruna Midori
