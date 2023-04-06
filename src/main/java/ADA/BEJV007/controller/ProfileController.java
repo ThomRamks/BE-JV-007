@@ -34,7 +34,7 @@ public class ProfileController {
     @Autowired
     private AddressMapper mapperAdress;
     @Autowired
-    private GeneralService<Address> adocaoService;
+    private GeneralService<Address> addressService;
 
     @GetMapping
     public List<Profile> list(){
@@ -50,23 +50,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.CREATED)
     public Profile save(@Valid @RequestBody ProfileSaveDTO dto) throws IOException {
         if(dto.getEndereco() != null){
-            URL url = new URL("https://viacep.com.br/ws/" +dto.getEndereco().getCep()+"/json/");
-            URLConnection connection = url.openConnection();
-            InputStream is = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-            String cep = "";
-            StringBuilder jsonCep = new StringBuilder();
-            while((cep = br.readLine()) != null){
-                jsonCep.append(cep);
-            }
-            AddressSaveDTO adressAux = new Gson().fromJson(jsonCep.toString(), AddressSaveDTO.class);
-            adressAux.setNumero(dto.getEndereco().getNumero());
-            adressAux.setAdicional(dto.getEndereco().getAdicional());
-
-            Address address = mapperAdress.address(adressAux);
-            adocaoService.save(address);
-            dto.setEndereco(address);
+            dto.setEndereco(addressService.save(dto.getEndereco()));
         }
         Profile profile = mapper.profile(dto);
         return profileService.save(profile);

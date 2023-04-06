@@ -1,6 +1,7 @@
 package ADA.BEJV007.controller;
 
 import ADA.BEJV007.mapper.AddressMapper;
+import ADA.BEJV007.service.APIConsumer;
 import ADA.BEJV007.service.GeneralService;
 import com.google.gson.Gson;
 import jakarta.validation.Valid;
@@ -40,21 +41,10 @@ public class AddressController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Address save(@Valid @RequestBody AddressSaveDTO dto) throws Exception {
-        URL url = new URL("https://viacep.com.br/ws/" +dto.getCep()+"/json/");
-        URLConnection connection = url.openConnection();
-        InputStream is = connection.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-        String cep = "";
-        StringBuilder jsonCep = new StringBuilder();
-        while((cep = br.readLine()) != null){
-            jsonCep.append(cep);
-        }
-        AddressSaveDTO adressAux = new Gson().fromJson(jsonCep.toString(), AddressSaveDTO.class);
-        adressAux.setNumero(dto.getNumero());
-        adressAux.setAdicional(dto.getAdicional());
-
-        Address address = mapper.address(adressAux);
+        Address address = new Address();
+        address = mapper.address(dto);
+        address.setNumero(dto.getNumero());
+        address.setAdicional(dto.getAdicional());
         return addressService.save(address);
     }
 

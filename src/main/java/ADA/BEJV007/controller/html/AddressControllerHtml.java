@@ -48,18 +48,7 @@ public class AddressControllerHtml {
         if (result.hasErrors()) {
             return form(address, null, "Erro ao encontrar Endereço");
         }
-        URL url = new URL("https://viacep.com.br/ws/" +address.getCep()+"/json/");
-        URLConnection connection = url.openConnection();
-        InputStream is = connection.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-        String cep = "";
-        StringBuilder jsonCep = new StringBuilder();
-        while((cep = br.readLine()) != null){
-            jsonCep.append(cep);
-        }
-        Address adressAux = new Gson().fromJson(jsonCep.toString(), Address.class);
-        Address address1 = addressService.saveHtml(adressAux);
+        Address address1 = addressService.saveHtml(address);
         return form(addressService.findById(address1.getId()), "CEP encontrado", null);
     }
 

@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressServiceImpl implements GeneralService <Address> {
 
+    private final APIConsumer consumer;
     private final AddressRepository repository;
     private final ProfileRepository profileRepository;
 
@@ -23,12 +24,14 @@ public class AddressServiceImpl implements GeneralService <Address> {
 
     @Override
     public Address save(Address address) {
-        return repository.save(address);
+        Address addressAux = consumer.apiAddress(address);
+        return repository.save(addressAux);
     }
 
     @Override
     public Address saveHtml(Address address) {
-        repository.save(address);
+        Address addressAux = consumer.apiAddress(address);
+        repository.save(addressAux);
         return address;
     }
 
@@ -41,7 +44,8 @@ public class AddressServiceImpl implements GeneralService <Address> {
     public Address update(Long id, Address address) {
         if(repository.existsById(id)){
             address.setId(id);
-            return repository.save(address);
+            Address addressAux = consumer.apiAddress(address);
+            return repository.save(addressAux);
         }
         throw new NotFoundException("Endereço");
     }
