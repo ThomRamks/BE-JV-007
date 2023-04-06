@@ -48,8 +48,8 @@ public class AddressControllerHtml {
         if (result.hasErrors()) {
             return form(address, null, "Erro ao encontrar Endereço");
         }
-        Address address1 = addressService.saveHtml(address);
-        return form(addressService.findById(address1.getId()), "CEP encontrado", null);
+        Address addressAux = addressService.saveHtml(address);
+        return form(addressAux, "CEP encontrado", null);
     }
 
     @PostMapping("form")

@@ -40,7 +40,7 @@ public class AddressController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Address save(@Valid @RequestBody AddressSaveDTO dto) throws Exception {
+    public Address save(@Valid @RequestBody AddressSaveDTO dto) {
         Address address = new Address();
         address = mapper.address(dto);
         address.setNumero(dto.getNumero());
