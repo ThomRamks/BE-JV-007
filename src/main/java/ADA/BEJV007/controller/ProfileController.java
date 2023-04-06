@@ -66,6 +66,7 @@ public class ProfileController {
 
             Address address = mapperAdress.address(adressAux);
             adocaoService.save(address);
+            dto.setEndereco(address);
         }
         Profile profile = mapper.profile(dto);
         return profileService.save(profile);
